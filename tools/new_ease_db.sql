@@ -195,6 +195,7 @@ CREATE TABLE groupApps
 (
   id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   group_profile_id INT(10) UNSIGNED NOT NULL,
+  group_id INT(10) UNSIGNED NOT NULL,
   permisson_id INT(10) UNSIGNED NOT NULL,
   position INT(10) UNSIGNED NOT NULL,
   type VARCHAR(255) NOT NULL,
@@ -202,6 +203,7 @@ CREATE TABLE groupApps
   common TINYINT(1) UNSIGNED NOT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (group_profile_id) REFERENCES groupProfiles(id),
+  FOREIGN KEY (group_id) REFERENCES group(id),
   FOREIGN KEY (permisson_id) REFERENCES appPermissions(id),
   FOREIGN KEY (app_info_id) REFERENCES appsInformations(id)
 );
@@ -228,7 +230,6 @@ CREATE TABLE groupWebsiteApps
   id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   group_app_id INT(10) UNSIGNED NOT NULL,
   website_id INT(10) UNSIGNED NOT NULL,
-  type VARCHAR(255) NOT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (group_app_id) REFERENCES groupApps(id),
   FOREIGN KEY (website_id) REFERENCES websites(id)
@@ -240,7 +241,6 @@ id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
 website_id INT(10) UNSIGNED NOT NULL,
 app_id INT(10) UNSIGNED NOT NULL,
 group_website_app_id INT(10) UNSIGNED,
-type VARCHAR(255) NOT NULL,
 PRIMARY KEY (id),
 FOREIGN KEY (app_id) REFERENCES apps (id),
 FOREIGN KEY (website_id) REFERENCES websites (id),

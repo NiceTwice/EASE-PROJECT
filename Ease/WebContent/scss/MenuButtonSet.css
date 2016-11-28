@@ -1,0 +1,96 @@
+.MenuButtonSet.show {
+  display: block; }
+
+.MenuButtonSet.toptopLeft {
+  width: fit-content;
+  top: 1%;
+  left: 2%; }
+
+.MenuButtonSet.topLeft {
+  width: fit-content;
+  top: 11%;
+  left: 2%; }
+
+.MenuButtonSet.topRight {
+  width: fit-content;
+  top: 11%;
+  left: 11%; }
+
+.MenuButtonSet.middleTopLeft {
+  width: fit-content;
+  top: 21%;
+  left: 2%; }
+
+.MenuButtonSet.bottomLeft {
+  width: fit-content;
+  top: 31%;
+  left: 2%; }
+
+.MenuButtonSet.superBottomLeft {
+  width: fit-content;
+  top: 41%;
+  left: 2%; }
+
+.MenuButtonSet.megaBottomLeft {
+  width: fit-content;
+  top: 51%;
+  left: 2%; }
+
+.MenuButtonSet.editMode #enterEditMode {
+  background-color: transparent; }
+.MenuButtonSet.editMode .openCatalogHelper {
+  transition: background-color .3s, height .3s, width .3s, right .3s, top .3s, border-radius .3s, visibility .3s;
+  visibility: visible;
+  width: 46%;
+  height: 90%;
+  right: 1.8%;
+  top: 5%;
+  border-radius: 5px;
+  background-color: #808080; }
+
+.MenuButtonSet {
+  display: block;
+  position: fixed;
+  top: 40%;
+  right: 2%; }
+  .MenuButtonSet #enterEditMode {
+    max-width: 100px;
+    min-width: 0px;
+    width: 50px;
+    height: 50px;
+    color: #373b60;
+    background-color: #ec555b;
+    border-radius: 5px;
+    padding: 7px;
+    margin: 0px;
+    transition: background-color 0.3s; }
+    .MenuButtonSet #enterEditMode:hover {
+      cursor: pointer; }
+    .MenuButtonSet #enterEditMode img {
+      width: 100%;
+      height: 100%; }
+  .MenuButtonSet .openCatalogHelper {
+    transition: height .3s, width .3s, right .3s, top .3s, border-radius .3s, visibility .3s;
+    visibility: hidden;
+    width: 50px;
+    height: 50px;
+    background-color: #808080;
+    position: fixed;
+    top: 40%;
+    right: 2%;
+    z-index: -1;
+    transform: rotate(180deg);
+    border-radius: 5px; }
+
+#addSiteForm input {
+  margin-top: 10px;
+  width: 50%;
+  margin-left: 25%; }
+
+#changeBackForm input {
+  position: relative;
+  margin-top: 1%;
+  width: 50%;
+  margin-left: 25%; }
+
+/*# sourceMappingURL=MenuButtonSet.css.map */

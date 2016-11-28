@@ -44,6 +44,12 @@ public abstract class App {
 		db.commitTransaction(transaction);
 	}
 	
+	public static String insertNewAppInDb(Profile profile, int position, String type, AppInformation informations, GroupApp groupApp, ServletManager sm) {
+		DataBaseConnection db = sm.getDB();
+		int app_id = db.set("INSERT INTO apps values (null, " + profile.getDb_id() + ", " + position + " , default, null, '" + type + "', 1, " + informations.getDb_id() + ", " + ((groupApp == null) ? "null" : groupApp.getDb_id()) +  ");");
+		return String.valueOf(app_id);
+	}
+	
 	protected String db_id;
 	protected int single_id;
 	protected Profile profile;
@@ -102,12 +108,9 @@ public abstract class App {
 	}
 	
 	public void remove(ServletManager sm) throws GeneralException {
-		if (this.permissions.havePermission(AppPermissions.Perm.DELETE.ordinal())) {
-			this.removeFromDb(sm);
-			this.profile.getApps().remove(this);
-			this.profile.updateAppsIndex(sm);
-		} else
-			throw new GeneralException(ServletManager.Code.ClientWarning, "Can't remove this app");
+		this.removeFromDb(sm);
+		this.profile.getApps().remove(this);
+		this.profile.updateAppsIndex(sm);
 	}
 	
 	public void removeFromDb(ServletManager sm) throws GeneralException {

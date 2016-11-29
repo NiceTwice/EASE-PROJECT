@@ -1,0 +1,27 @@
+{
+    "name":"Piktochart",
+    "lastLogin":"",
+    "home":"http://magic.piktochart.com/",
+    "connect":{
+        "todo":[
+            {"action":"fill", "what":"login", "search":"#user_email"},
+            {"action":"fill", "what":"password", "search":"#user_password"},
+            {"action":"click", "search":"#km_user_login"}
+        ]
+    },
+    "logout":{
+        "todo":[
+        	{"action":"clickona", "search":"#pikto-menu-logout-btn"},
+        	{"action":"waitfor", "search":"#modal-ok-btn"},
+        	{"action":"click", "search":"#modal-ok-btn"}
+           ]
+    },
+    "checkAlreadyLogged":[
+        {"search":"#pikto-menu-logout-btn"}
+    ],
+    "Facebook": {
+    	"todo":[
+    		{"action":"goto", "url":"https://magic.piktochart.com/users/auth/facebook"}
+    	]
+    }
+}

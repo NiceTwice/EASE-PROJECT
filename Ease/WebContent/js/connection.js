@@ -48,11 +48,9 @@ $(document).ready(function() {
 		
 		$('.savedUser #savedUserButton').click(function(){
 			var parent = $(this).closest('.savedUser');
-			var email = getCookie('email');
+			var email = parent.find('#email').val();
 			var password = parent.find('#password').val();
 
-			email = email.substring(1, email.length - 1);
-			//console.log("Connection for email "+email+" requested.");
 			$(parent).find('.alertDiv').removeClass('show');
 			$(parent).closest(".forget-password").hide();
 			$(parent).hide();

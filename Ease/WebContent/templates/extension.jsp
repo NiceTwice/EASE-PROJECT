@@ -12,12 +12,10 @@
 		</div>
 		<div class="safariHelper" id="afterdownload" style="display: none;">
 			<h1 style="margin-top: 0px;">Final step</h1>
-			<p>You have downloaded our addon (called "EaseExtension.safariextz"). Simply double click on it in your downloads to install it.</p>
-			<div style="width: 55%;margin:5px auto 5px auto;"><img style="width: 100%" src="resources/other/safari-addon-example.png"/></div>
-			<p style="font-size: 1.3em;">Once it's done, just <a href="/">click here to reload the page</a> :)</p>
+			<p style="font-size: 1.3em;">Once you have downloaded our addon <a href="https://safari-extensions.apple.com/details/?id=com.ease.easeextension-45P859NKD6" target="_blank">on the safari store</a>, just <a href="/">reload this page</a> :)</p>
 		</div>
 		<div class="safariHelper" id="alreadydownloaded" style="display: none;">
-			<p style="font-size: 1.2em; margin-top:5px;">If you have already downloaded the addon, try to double click on "EaseExtension.safariextz" in your downloads folder to install it. Then <a href="/">reload the page</a>.
+			<p style="font-size: 1.2em; margin-top:5px;">If you have already downloaded the addon, try to double click on "EaseExtension.safariextz" in your downloads folder to install it. Then <a href="/">reload this page</a>.
 			<br>If it's still not working, you can contact us on <a href="https://www.facebook.com/EasePlatform/?fref=ts" target="_blank">our facebook page.</a></p>
 			<div style="width: 55%;margin:5px auto 5px auto;"><img style="width: 100%" src="resources/other/safari-addon-example.png"/></div>
 			<button id="returnButtonSafari">OK, got it.</button>
@@ -52,12 +50,12 @@
 				$('#downloadExtension .popupHelper').css('display', 'none');				
 			});
 			
-			$('#downloadExtension #safariInfoButton').click(function(){
+			/*$('#downloadExtension #safariInfoButton').click(function(){
 				$('#downloadExtension .popupContent').css('display', 'none');
 				$('#downloadExtension #alreadydownloaded').css('display', 'block');
 			});
 			$('#downloadExtension #returnButtonSafari').click(function(){
 				$('#downloadExtension .popupContent').css('display', 'block');
 				$('#downloadExtension #alreadydownloaded').css('display', 'none');				
-			});
+			});*/
 		</script>

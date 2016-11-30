@@ -1,6 +1,8 @@
 package com.Ease.servlet;
 
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -62,7 +64,7 @@ public class ConnectionServlet extends HttpServlet {
 		// --
 
 		DataBase db = (DataBase) session.getServletContext().getAttribute("DataBase");
-		String client_ip = getIpAddr(request);
+		String client_ip = getIpAddr(request, email);
 
 		if (user != null) {
 			session.setAttribute("User", null);
@@ -71,24 +73,24 @@ public class ConnectionServlet extends HttpServlet {
 		try {
 			db.connect();
 		} catch (SQLException e) {
-			SI.setResponse(ServletItem.Code.DatabaseNotConnected, "There is a problem with our Database, please retry in few minutes.");
+			SI.setResponse(ServletItem.Code.DatabaseNotConnected,
+					"There is a problem with our Database, please retry in few minutes.");
 			SI.sendResponse();
-			return ;
+			return;
 		}
-		
+
 		try {
 			// Put current ip in db
 			addIpInDataBase(client_ip, db);
 			int attempts = 0;
 			if (canConnect(client_ip, db)) {
 				if (email == null || Regex.isEmail(email) == false) {
-					attempts = incrementAttempts(client_ip, db);
-					SI.setResponse(ServletItem.Code.BadParameters, "Wrong email." + " You have " + (max_attempts - attempts) + "/10 attempts left.");
+					//attempts = incrementAttempts(client_ip, db);
+					SI.setResponse(ServletItem.Code.BadParameters, "Incorrect email.");
 				} else if (password == null || Regex.isPassword(password) == false) {
 					attempts = incrementAttempts(client_ip, db);
-					SI.setResponse(ServletItem.Code.BadParameters, "Wrong password." + " You have " + (max_attempts - attempts) + "/10 attempts left.");
+					SI.setResponse(ServletItem.Code.BadParameters,"Incorrect password. " + (max_attempts - attempts) + " attempts left.");
 				} else {
-					
 
 					ResultSet rs;
 
@@ -107,11 +109,11 @@ public class ConnectionServlet extends HttpServlet {
 							SI.setResponse(200, "Connected.");
 						} else {
 							attempts = incrementAttempts(client_ip, db);
-							SI.setResponse(199, "Wrong login or password." + " You have " + (max_attempts - attempts) + "/10 attempts left.");
+							SI.setResponse(199, "Wrong password. " + (max_attempts - attempts) + " attempts left.");
 						}
 					} else {
-						attempts = incrementAttempts(client_ip, db);
-						SI.setResponse(199, "Wrong login or password." + " You have " + (max_attempts - attempts) + " /10 attempts left.");
+						//attempts = incrementAttempts(client_ip, db);
+						SI.setResponse(199, "Your email does not match any of our users.");
 					}
 				}
 			} else {
@@ -125,29 +127,47 @@ public class ConnectionServlet extends HttpServlet {
 		SI.sendResponse();
 	}
 
-	public String getIpAddr(HttpServletRequest request) {
+	public String getIpAddr(HttpServletRequest request, String email) {
+
+		/*String[] HEADERS_TO_TRY = { "X-Forwarded-For", "Proxy-Client-IP", "WL-Proxy-Client-IP", "HTTP_X_FORWARDED_FOR",
+				"HTTP_X_FORWARDED", "HTTP_X_CLUSTER_CLIENT_IP", "HTTP_CLIENT_IP", "HTTP_FORWARDED_FOR",
+				"HTTP_FORWARDED", "HTTP_VIA", "REMOTE_ADDR" };
+
+		for (String header : HEADERS_TO_TRY) {
+			String ip = request.getHeader(header);
+			if (ip != null && ip.length() != 0 && !"unknown".equalsIgnoreCase(ip)) {
+				return ip;
+			}
+		}
+		return request.getRemoteAddr();*/
 		String ip = request.getHeader("X-Real-IP");
 		if (null != ip && !"".equals(ip.trim()) && !"unknown".equalsIgnoreCase(ip)) {
-			return ip;
+			return ip+email;
 		}
 		ip = request.getHeader("X-Forwarded-For");
 		if (null != ip && !"".equals(ip.trim()) && !"unknown".equalsIgnoreCase(ip)) {
 			// get first ip from proxy ip
 			int index = ip.indexOf(',');
 			if (index != -1) {
-				return ip.substring(0, index);
+				return ip.substring(0, index)+email;
 			} else {
-				return ip;
+				return ip+email;
 			}
 		}
-		return request.getRemoteAddr();
+		return request.getRemoteAddr()+email;
+		/*
+		 * InetAddress ipAddr; try { ipAddr = InetAddress.getLocalHost(); }
+		 * catch (UnknownHostException e) { // TODO Auto-generated catch block
+		 * return "oups"; } return ipAddr.getHostAddress();
+		 */
 	}
 
 	public void addIpInDataBase(String client_ip, DataBase db) throws SQLException {
-			ResultSet rs = db.get("SELECT * FROM askingIps WHERE ip='" + client_ip + "';");
-			if (rs.next())
-				return;
-			db.set("INSERT INTO askingIps values (NULL, '" + client_ip + "', 0, '" + getCurrentTime() + "', '" + getExpirationTime() + "');");
+		ResultSet rs = db.get("SELECT * FROM askingIps WHERE ip='" + client_ip + "';");
+		if (rs.next())
+			return;
+		db.set("INSERT INTO askingIps values (NULL, '" + client_ip + "', 0, '" + getCurrentTime() + "', '"
+				+ getExpirationTime() + "');");
 	}
 
 	public String getCurrentTime() {
@@ -162,12 +182,11 @@ public class ConnectionServlet extends HttpServlet {
 		return dateFormat.format(new Date(date.getTime() + (expiration_time * ONE_MINUTE_IN_MILLIS)));
 	}
 
-	public void removeIpFromDataBase(String client_ip, DataBase db)  throws SQLException {
+	public void removeIpFromDataBase(String client_ip, DataBase db) throws SQLException {
 		db.set("DELETE FROM askingIps WHERE ip = '" + client_ip + "';");
 	}
 
-	public int incrementAttempts(String client_ip, DataBase db)  throws SQLException {
-		System.out.println(getExpirationTime());
+	public int incrementAttempts(String client_ip, DataBase db) throws SQLException {
 		db.set("UPDATE askingIps SET attempts = attempts + 1, attemptDate = '" + getCurrentTime()
 				+ "', expirationDate = '" + getExpirationTime() + "' WHERE ip = '" + client_ip + "';");
 		ResultSet rs = db.get("select attempts from askingIps where ip='" + client_ip + "';");
@@ -180,7 +199,7 @@ public class ConnectionServlet extends HttpServlet {
 		}
 	}
 
-	public boolean canConnect(String client_ip, DataBase db)  throws SQLException {
+	public boolean canConnect(String client_ip, DataBase db) throws SQLException {
 		ResultSet rs = db.get("SELECT attempts, expirationDate FROM askingIps WHERE ip='" + client_ip + "';");
 		int attempts = 0;
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

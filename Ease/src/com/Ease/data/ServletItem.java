@@ -173,12 +173,15 @@ public class ServletItem {
 		DataBase db = (DataBase)request.getSession().getServletContext().getAttribute("DataBase");
 		user = ((User)request.getSession().getAttribute("User") == null) ? user : (User)request.getSession().getAttribute("User");
 		String ret = retMsg;
+		if(retMsg.equals("")){
+			retMsg="Empty message";
+		}
 		if (type == Type.AskInfo && retCode == 200) {
 			retMsg = "Info sended.";
 		} else if (type == Type.SaveSessionServlet && retCode == 200) {
 			retMsg = "Session saved for user_id "+user.getId();
 		}
-		if (retCode != Code.DatabaseNotConnected.ordinal() && type != Type.CatalogSearchServlet && type != Type.RequestedWebsitesServlet && !retMsg.equals(""))
+		if (retCode != Code.DatabaseNotConnected.ordinal() && type != Type.CatalogSearchServlet && type != Type.RequestedWebsitesServlet && type != Type.CheckConnection)
 			try {
 				saveInDB(db);
 			} catch (SQLException e) {

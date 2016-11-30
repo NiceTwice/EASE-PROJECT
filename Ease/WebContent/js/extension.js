@@ -114,7 +114,7 @@ function checkForExtension() {
     	$('#downloadExtension').find(".classicContent").css('display', 'block');
     	$('#downloadExtension').find('.install-button').css('display', 'inline-block');
        	$('#downloadExtension').find(".safariUpdate").css('display', 'none');
-        if(getUserNavigator() == "Safari"){$('#safariInfoButton').css('display', 'block');}
+        //if(getUserNavigator() == "Safari"){$('#safariInfoButton').css('display', 'block');}
         $('#downloadExtension').find('.install-button').click(
             function() {
                 var NavigatorName = getUserNavigator();
@@ -132,7 +132,8 @@ function checkForExtension() {
                         })
                 }
                 else if (NavigatorName == "Safari"){
-                    window.location.replace("https://ease.space/safariExtension/EaseExtension.safariextz");
+                	var win = window.open("https://safari-extensions.apple.com/details/?id=com.ease.easeextension-45P859NKD6", '_blank');
+                	win.focus();
                     $('#downloadExtension').find('.popupContent').hide();
                     $('#downloadExtension').find('#afterdownload.safariHelper').show();
                 }

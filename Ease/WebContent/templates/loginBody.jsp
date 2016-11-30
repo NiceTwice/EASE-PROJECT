@@ -3,6 +3,9 @@
     <%@ page import="java.util.Base64" %>
 <%@ page import="java.util.Base64.Encoder" %>
 <%@ page import="java.nio.charset.StandardCharsets" %>
+<%@ page import="java.sql.SQLException" %>
+<%@ page import="java.io.IOException" %>
+<%@ page import="java.sql.ResultSet" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <script src="js/connection.js"></script>
@@ -24,59 +27,43 @@ $(document).ready(function(){
 	</div>
 	<%@ include file="Logout.jsp" %>
 <% 
-	Cookie 	cookie = null;
-	Cookie 	cookies[] = request.getCookies();
-	String 	fname = "";
-	String 	lname = "";
-	String 	email = "";
-	int		iden = 0;
-	if (cookies != null){
+Cookie 	cookie = null;
+Cookie 	cookies[] = request.getCookies();
+String 	fname = "";
+String 	email = "";
+if (cookies != null){
 	for (int i = 0;i < cookies.length ; i++) {
 		cookie = cookies[i];
 		if ((cookie.getName()).compareTo("email") == 0){
 			email = cookie.getValue();
-			if (email.length() > 0)
-				iden++;
-		}
-		else if ((cookie.getName()).compareTo("lname") == 0){
-			lname = cookie.getValue();
-			if (lname.length() > 0){
-				iden++;
-			}
-		}
-		else if ((cookie.getName()).compareTo("fname") == 0){
-			fname = cookie.getValue();
-			if (fname.length() > 0)
-				iden++;
 		}
 	}
-	if (iden == 3){
+	if(email.length()>0){
+		com.Ease.context.DataBase db = (com.Ease.context.DataBase)session.getServletContext().getAttribute("DataBase");
 		try {
-		new String(Base64.getDecoder().decode(lname), StandardCharsets.UTF_8);
-		new String(Base64.getDecoder().decode(fname), StandardCharsets.UTF_8);
-		} catch (IllegalArgumentException e){
-			for (int i = 0;i < cookies.length ; i++) {
-				 cookies[i].setMaxAge(-1);
-	             cookies[i].setValue(null);
-                 response.addCookie(cookies[i]);
+			db.connect();
+			ResultSet rs = db.get("SELECT firstName FROM users WHERE email='"+email+"';");
+			if(rs.next()){
+				fname = rs.getString(1);
 			}
-			fname = "";
-			lname = "";
-			response.sendRedirect("/index.jsp");
+		} catch (SQLException e) {
+			email="";
 		}
 	}
-	}
+	
+}
 %>
 	<div class="FormsContainer">
-	<% if (iden == 3){ %>
+	<% if (email.length() > 0 && fname.length() >0){ %>
 		<div class="form" id="knownUser">
 			
 			<img class='ease-logo' src='resources/icons/Ease_Logo_couleur.png'/>
 			<div class="savedUser">
 				<a class='new-to-ease' href="http://www.ease-app.co">New to Ease</a>
 				<a class='forget-password' href="PasswordLost">Password lost ?</a>
-				<p>Hello <%= new String(Base64.getDecoder().decode(fname), StandardCharsets.UTF_8) %> !</p>
+				<p>Hello <%= fname %> !</p>
 				<span class="input input--minoru">
+					<input style="display:none;" id="email" name="email" value="<%= email %>"/>
 					<input class="input__field input__field--minoru" id="password" name="password" type="password" id="input-8" placeholder="Password"/>
 					<label class="input__label input__label--minoru" for="input-8"></label>
 				</span>
@@ -103,7 +90,7 @@ $(document).ready(function(){
 			<div id="changeAccount">Other account <img class='switch-account' src="resources/icons/account.png" /></div>   
 		</div>
 	<%}%>
-		<div class="form" id="unknownUser" <% if (iden == 3){ %> style="visibility:hidden;" <% }%>>
+		<div class="form" id="unknownUser" <% if (email.length() > 0 && fname.length() >0){ %> style="visibility:hidden;" <% }%>>
 			<img class='ease-logo' src='resources/icons/Ease_Logo_couleur.png'/>
 			<form action="connection" method="POST" id="loginForm" role="form">
 				<a class='new-to-ease' href="http://www.ease-app.co">New to Ease</a>
@@ -136,8 +123,8 @@ $(document).ready(function(){
   				<div class="sk-circle11 sk-circle"></div>
   				<div class="sk-circle12 sk-circle"></div>
 			</div>
-			<% if (iden == 3) {%>
-				<div id="back"><%= new String(Base64.getDecoder().decode(fname), StandardCharsets.UTF_8) %> account <img class='switch-account' src="resources/icons/account.png" /></div>
+			<% if (email.length() > 0 && fname.length() >0) {%>
+				<div id="back"><%= fname %> account <img class='switch-account' src="resources/icons/account.png" /></div>
 			<% } %>
 		</div>
 	</div>

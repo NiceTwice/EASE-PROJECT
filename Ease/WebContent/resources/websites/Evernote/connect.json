@@ -1,0 +1,26 @@
+{
+	"name":"Evernote",
+	"lastLogin":"",
+	"home":"https://www.evernote.com/Login.action",
+	"connect":{
+		"todo":[
+			{"action":"fill", "what":"login", "search":"#username", "grave":true},
+			{"action":"fill", "what":"password", "search":"#password"},
+			{"action":"click", "search":"#login", "grave":true}
+			]
+	},
+	"logout":{
+		"todo":[
+            {"action":"click", "search":"#gwt-debug-AccountMenu-avatar"},
+			{"action":"click", "search":"#gwt-debug-AccountMenu-logout"}
+        ]
+	},
+	"checkAlreadyLogged":[
+		{"search":"#gwt-debug-AccountMenu-avatar"}
+	],
+    "Google":{
+        "todo":[
+            {"action":"click", "search":"#googleOauthButton"}
+        ]
+    }
+}

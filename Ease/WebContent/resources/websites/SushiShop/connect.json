@@ -1,0 +1,21 @@
+{
+	"name":"SushiShop",
+	"lastLogin":"",
+	"home":"https://www.sushishop.fr",
+	"connect":{
+		"todo":[
+            {"action":"goto", "url":"https://www.sushishop.fr/authentification"},
+      		{"action":"fill", "what":"login", "search":"#login21-field", "grave":true},
+			{"action":"fill", "what":"password", "search":"#pass22-field"},
+			{"action":"click", "search":".ajax-form.login-form input[type='submit']"}
+			]
+	},
+	"logout":{
+		"todo":[
+            {"action":"goto", "url":"https://www.sushishop.fr/logout"}
+        ]
+	},
+	"checkAlreadyLogged":[
+	   {"search":".btn-logout"}
+	]
+}

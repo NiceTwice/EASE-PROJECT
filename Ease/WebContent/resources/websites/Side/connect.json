@@ -1,12 +1,12 @@
 {
 	"name":"Side",
 	"lastLogin":"",
-	"home":"https://www.side.co/job-board",
+	"home":"https://siders.side.co/",
 	"connect":{
 		"todo":[
-    		{"action":"goto", "url":"https://www.side.co/signin"},
-			{"action":"fill", "what":"login", "search":"#signin-block-content input[name='email']", "grave":true},
-			{"action":"fill", "what":"password", "search":"#signin-block-content input[name='password']", "grave":true},
+    		{"action":"goto", "url":"https://siders.side.co/signin"},
+			{"action":"fill", "what":"login", "search":"#loginForm input[name='email']", "grave":true},
+			{"action":"fill", "what":"password", "search":"#loginForm input[name='password']", "grave":true},
 			{"action":"click", "search":"#login-button[type='submit']", "grave":true}
 		]
 	},

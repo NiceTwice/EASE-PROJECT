@@ -96,7 +96,7 @@ public class ServletItem {
 	public ServletItem(Type type, HttpServletRequest request, HttpServletResponse response, User user) {
 		args = new HashMap<>();
 		this.type = type;
-		retMsg = "No message";
+		retMsg = "";
 		retCode = 0;
 		this.request = request;
 		this.response = response;
@@ -165,6 +165,8 @@ public class ServletItem {
 	    }
 	    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
+		retMsg = retMsg.replace("'","-");
+		argsString = argsString.replaceAll("'", "-");
 		System.out.println("insert into logs values(" + type.ordinal() + ", " + retCode + ", " + ((user != null) ? user.getId() : "NULL") + ", '" + argsString + "', '" + retMsg + "', '" + dateFormat.format(date) + "');");
 		db.set("insert into logs values(" + type.ordinal() + ", " + retCode + ", " + ((user != null) ? user.getId() : "NULL") + ", '" + argsString + "', '" + retMsg + "', '" + dateFormat.format(date) + "');");
 	}

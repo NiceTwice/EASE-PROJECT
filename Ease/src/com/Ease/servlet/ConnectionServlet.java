@@ -74,7 +74,7 @@ public class ConnectionServlet extends HttpServlet {
 			db.connect();
 		} catch (SQLException e) {
 			SI.setResponse(ServletItem.Code.DatabaseNotConnected,
-					"There is a problem with our Database, please retry in few minutes.");
+					"There is a problem with our database, please retry in few minutes.");
 			SI.sendResponse();
 			return;
 		}

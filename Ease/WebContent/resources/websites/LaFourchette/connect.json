@@ -1,0 +1,24 @@
+{
+	"name":"LaFourchette",
+	"lastLogin":"",
+	"home":"https://www.lafourchette.com",
+	"connect":{
+		"todo":[
+			{"action":"clickona", "search":"#header-login"},
+			{"action":"waitfor", "time":100, "search":"#inputEmail"},
+			{"action":"fill", "what":"login", "search":"#inputEmail"},
+            {"action":"click", "search":".connectionAuthLogin-submitGroup.form-group button"},
+            {"action":"waitfor", "search":"#register-password"},
+			{"action":"fill", "what":"password", "search":"#register-password"},
+			{"action":"click", "search":".smartConnectAuthPassword-submitGroup.form-group button"}
+			]
+	},
+	"logout":{
+		"todo":[
+			{"action":"goto", "url":"https://www.lafourchette.com/logout"}
+        ]
+	},
+	"checkAlreadyLogged":[
+		{"search":".header-menuTitle.header-menuTitle--myAccount"}
+	]
+}

@@ -1,0 +1,27 @@
+{
+	"name":"Couchsurfing",
+	"lastLogin":"",
+	"home":"https://www.couchsurfing.com",
+	"connect":{
+        "todo":[
+            {"action":"clickona", "search":"a[href='/users/sign_in?cs_new_fe=true']", "grave":true}
+			{"action":"waitfor", "search":"#user_login"},
+			{"action":"fill", "what":"login", "search":"#user_login", "grave":true},
+			{"action":"fill", "what":"password", "search":"#user_password", "grave":true},
+			{"action":"click", "search":"input[name='commit']", "grave":true}
+        ]
+	},
+	"logout":{
+		"todo":[
+			{"action":"clickona", "search":"a[href='/users/sign_out']"}
+        ]
+	},
+	"checkAlreadyLogged":[
+		{"search":"a.header-nav-link.mod-avatar.mod-dropdown-arrow"}
+	],
+	"Facebook":{
+		"todo":[
+			{"action":"goto", "url":"https://www.couchsurfing.com/users/auth/facebook?auth_action=log_in"}
+        ]
+	}
+}

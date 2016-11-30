@@ -1,0 +1,31 @@
+{
+	"name":"SurveyMonkey",
+	"lastLogin":"",
+	"home":"https://fr.surveymonkey.com/user/sign-in/",
+	"connect":{
+		"todo":[
+      		{"action":"fill", "what":"login", "search":"#username", "grave":true},
+			{"action":"fill", "what":"password", "search":"#password"},
+			{"action":"click", "search":"button[type='submit']"}
+			]
+	},
+	"logout":{
+		"todo":[
+            {"action":"goto", "url":"https://fr.surveymonkey.com/user/sign-out/"},
+            {"action":"goto", "url":"https://fr.surveymonkey.com/user/sign-in/"},
+        ]
+	},
+	"checkAlreadyLogged":[
+	   {"search":"#userAcctTab_MainMenu"}
+	],
+    "Facebook":{
+        "todo":[
+            {"action":"aclick", "search":"#hlFacebook"}
+        ]
+    },
+    "Google":{
+        "todo":[
+            {"action":"aclick", "search":"hlGoogle"}
+        ]
+    }
+}

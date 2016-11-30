@@ -129,23 +129,16 @@ public class User {
 			updates = new LinkedList<Update>();
 			group_ids = new LinkedList<String>();
 
-			String oldHashedPassword = rs.getString(UserData.PASSWORD.ordinal());
-			String oldSaltEase = rs.getString(UserData.SALTEASE.ordinal());
-			String oldSaltPerso = rs.getString(UserData.SALTPERSO.ordinal());
+			hashedPassword = rs.getString(UserData.PASSWORD.ordinal());
+			saltEase = rs.getString(UserData.SALTEASE.ordinal());
+			saltPerso = rs.getString(UserData.SALTPERSO.ordinal());
 
-			if (!oldHashedPassword.equals(Hashing.SHA(pass, oldSaltEase))) {
+			if (!hashedPassword.equals(Hashing.SHA(pass, saltEase))) {
 				throw new SessionException("Wrong password.");
 			} else if ((keyUser = AES.decryptUserKey(rs.getString(UserData.KEYUSER.ordinal()), pass,
-					oldSaltPerso)) == null) {
+					saltPerso)) == null) {
 				throw new SessionException("Can't decrypt key.");
-			} else if ((saltEase = Hashing.generateSalt()) == null) {
-				throw new SessionException("Can't create salt.");
-			} else if ((saltPerso = AES.generateSalt()) == null) {
-				throw new SessionException("Can't create salt.");
-			} else if ((hashedPassword = Hashing.SHA(pass, saltEase)) == null) {
-				throw new SessionException("Can't hash password.");
 			}
-			updateInDB(context, pass);
 
 			loadProfiles(context);
 			if (this.profilesDashboard.get(0).isEmpty()) {

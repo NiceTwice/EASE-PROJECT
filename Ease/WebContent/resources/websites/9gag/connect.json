@@ -1,0 +1,31 @@
+{
+    "name":"9gag",
+    "lastLogin":"",
+    "home":"https://9gag.com/login",
+    "connect":{
+        "todo":[
+          	{"action":"fill", "what":"login", "search":"#jsid-login-email-name", "grave":true},
+            {"action":"fill", "what":"password", "search":"#login-email-password", "grave":true},
+            {"action":"click", "search":"form#login-email input[type='submit']"}
+        ]
+    },
+    "Facebook":{
+    	"todo":[
+            {"action":"clickona", "search":"a.btn-connect-option.facebook.badge-facebook-connect"}
+    	]
+    },
+    "logout":{
+        "todo":[
+            {"action":"goto", "url":"https://9gag.com/logout"},
+            {"action":"goto", "url":"https://9gag.com/login"}
+         ]
+    },
+    "Google":{
+        "todo":[
+            {"action":"clickona", "search":"a.btn-connect-option.google-plus.badge-gplus-connect-btn"}
+        ]
+    },
+    "checkAlreadyLogged":[
+        {"search":"div.upload"}
+    ]
+}

@@ -1,0 +1,36 @@
+{
+    "name":"Codecademy",
+    "lastlogin":"",
+    "home":"https://www.codecademy.com/login",
+    "connect": {
+    	"todo": [
+			{"action":"fill", "what":"login", "search":"#user_login", "grave":"true"},
+			{"action":"fill", "what":"password", "search":"#user_password"},
+			{"action":"click", "search":"#user_submit"}
+       	]
+    },
+    "logout": {
+    	"todo": [
+    		{"action":"goto", "url":"https://www.codecademy.com/sign_out"},
+    		{"action":"goto", "url":"https://www.codeacademy.com/login"}
+    	]
+    },
+    "Facebook":{
+        "todo": [
+            {"action":"goto", "url":"https://www.codecademy.com/users/auth/facebook?signin=true"}
+        ]
+    },
+    "Twitter":{
+        "todo": [
+            {"action":"goto", "url":"https://www.codecademy.com/users/auth/twitter?signin=true"}
+        ]
+    },
+    "Google":{
+        "todo": [
+            {"action":"goto", "url":"https://www.codecademy.com/users/auth/google_oauth2?signin=true"}
+        ]
+    },
+    "checkAlreadyLogged": [
+    	{"search":"div.Y8dknuoW8NLiudcM-zQib._1pl0auxsnexFW5uqwCQW_x._2tbl3cOSPjsfIWBMlHZgcG"}
+    ]
+}

@@ -1,0 +1,21 @@
+{
+	"name":"IFTTT",
+	"lastLogin":"",
+	"home":"https://ifttt.com/",
+	"connect":{
+		"todo":[
+			{"action":"goto", "url":"https://ifttt.com/login"},
+			{"action":"fill", "what":"login", "search":"#user_username", "grave":true},
+			{"action":"fill", "what":"password", "search":"#user_password", "grave":true},
+			{"action":"click", "search":"input[name='commit']", "grave":true}
+		]
+	},
+	"logout":{
+		"todo":[
+			{"action":"goto", "url":"https://ifttt.com/session/logout"}
+        ]
+	},
+	"checkAlreadyLogged":[
+		{"search":"ul.account-menu"}
+	]
+}

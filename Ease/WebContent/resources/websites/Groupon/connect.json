@@ -1,0 +1,27 @@
+{
+	"name":"Groupon",
+	"lastLogin":"",
+	"home":"https://www.groupon.fr",
+	"connect":{
+		"todo":[
+            {"action":"goto", "url":"https://www.groupon.fr/login"},
+			{"action":"fill", "what":"login", "search":"#email-input", "grave":true},
+			{"action":"fill", "what":"password", "search":"#password-input"},
+			{"action":"click", "search":"#signin-button", "grave":true}
+			]
+	},
+	"logout":{
+		"todo":[
+			{"action":"goto", "url":"https://www.groupon.fr/logout?return_to=https%3A%2F%2Fwww.groupon.fr%2F"}
+        ]
+	},
+	"checkAlreadyLogged":[
+		{"search":"#user-name"}
+	],
+    "Facebook":{
+        "todo":[
+            {"action":"goto", "url":"https://www.groupon.fr/login"},
+            {"action":"click", "search":".facebook-login-button"}
+        ]
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "name":"JustFab",
+    "lastlogin":"",
+    "home":"http://www.justfab.fr/",
+    "connect": {
+    	"todo": [
+    		{"action":"click", "search":"nav a.menu.login.login_modal_trigger"},
+    		{"action":"waitfor", "search":"input#reference_data"},
+    		{"action":"fill", "what":"login", "search":"input#reference_data"},
+    		{"action":"fill", "what":"password", "search":"input#verification_data"},
+    		{"action":"click", "search":"div.button.cta_submit.login_cta_submit"}
+       	]
+    },
+    "logout": {
+    	"todo": [
+    		{"action":"aclick", "search":"a[href*='logout']"}
+    	]
+    },
+    "checkAlreadyLogged": [
+    	{"search":"a[href*='logout']"}
+    ]
+}

@@ -1,0 +1,27 @@
+{
+    "name":"FlixBus",
+    "lastlogin":"",
+    "home":"https://shop.flixbus.fr/",
+    "connect": {
+    	"todo": [
+    		{"action":"goto", "url":"https://shop.flixbus.fr/user/login"},
+    		{"action":"fill", "what":"login", "search":"input#login-nr"},
+    		{"action":"fill", "what":"password", "search":"input#login-email"},
+    		{"action":"click", "search":"#form_user_login button[type='submit']"}
+       	]
+    },
+    "logout": {
+    	"todo": [
+    		{"action":"goto","url":"https://shop.flixbus.fr/user/logout"}
+    	]
+    },
+    "checkAlreadyLogged": [
+    	{"search":"a[href*='user/profile']"}
+    ],
+    "Facebook": {
+    	"todo": [
+    		{"action":"goto", "url":"https://www.flixbus.fr/login-menu-fr"},
+    		{"action":"click", "search":"#facebook_login_button"}
+    	]
+    }
+}

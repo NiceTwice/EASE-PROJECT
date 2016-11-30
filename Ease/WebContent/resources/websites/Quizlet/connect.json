@@ -1,25 +1,32 @@
 {
     "name":"Quizlet",
     "lastlogin":"",
-    "home":"https://quizlet.com/login",
+    "home":"https://quizlet.com/",
     "connect": {
     	"todo": [
-    		{"action":"fill", "what":"login", "search":"#username1"},
-    		{"action":"fill", "what":"password", "search":"#password1"},
-    		{"action":"click", "search":"button[type='submit']"}
+    		{"action":"click", "search":".SiteHeader-signIn button.UILink"},
+    		{"action":"waitfor", "search":"#LoginPromptModal-loginForm"},
+    		{"action":"fill", "what":"login", "search":"#LoginPromptModal-loginForm input[name='username']"},
+    		{"action":"fill", "what":"password", "search":"#LoginPromptModal-loginForm input[name='password']"},
+    		{"action":"click", "search":"#LoginPromptModal-loginForm button[type='submit']"}
        	]
     },
     "logout": {
     	"todo": [
-    		{"action":"click", "search":"span.SiteHeader-logoutLink"}
+    		{"action":"click", "search":".SiteHeader-userInfo"},
+    		{"action":"waitfor", "search":".SiteHeader-logoutLink button"},
+    		{"action":"click", "search":".SiteHeader-logoutLink button"},
+    		{"action":"waitfor", "search":".SiteHeader-signIn button.UILink"}
     	]
     },
     "checkAlreadyLogged": [
-    	{"search":"a[href='/upgrade?source=footer']"}
+    	{"search":"span.SiteHeader-username"}
     ],
     "Facebook": {
     	"todo": [
-    		{"action":"aclick", "search":"a.facebook.button"}
+    		{"action":"click", "search":".SiteHeader-signIn button.UILink"},
+    		{"action":"waitfor", "search":"#LoginPromptModal-loginForm"},
+    		{"action":"aclick", "search":"a[href*='fb-oauth-redirector']"}
     	]
     }
 }

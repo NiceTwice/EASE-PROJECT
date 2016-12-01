@@ -92,7 +92,7 @@ public class AddLogWith extends HttpServlet {
 					SI.setResponse(ServletItem.Code.BadParameters, "This website doesn't exist in the database.");
 				} else {
 					if (profile.havePerm(Profile.ProfilePerm.ADDAPP, session.getServletContext())){
-						transaction = db.start();
+						//transaction = db.start();
 						App logWith = new App(name, user.getApp(appId).getId(), site, profile, user, session.getServletContext());
 						profile.addApp(logWith);
 						user.getApps().add(logWith);
@@ -100,8 +100,9 @@ public class AddLogWith extends HttpServlet {
 							user.tutoComplete();
 							user.updateInDB(session.getServletContext());
 						}
+						db.set("CALL increaseRatio(" + siteId + ");");
 						SI.setResponse(200, Integer.toString(logWith.getAppId()));
-						db.commit(transaction);
+						//db.commit(transaction);
 					} else {
 						SI.setResponse(ServletItem.Code.NoPermission, "You have not the permission.");
 					}

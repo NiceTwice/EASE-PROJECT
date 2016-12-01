@@ -52,7 +52,7 @@ $(document).ready(function(){
 <div id="loggedBody">
     <div class="col-left <c:if test='${settingsOpen eq null}'>show</c:if>" style="width: 100%; float:left">
 		<%@ include file="ProfileView.jsp"%>
-			<div class="MenuButtonSet">
+			<div class="MenuButtonSet show">
 		<button id="enterEditMode" state="off" class="button"><img src="resources/icons/menu_icon.png"/>
 			<div class="openCatalogHelper"></div>
 		</div>

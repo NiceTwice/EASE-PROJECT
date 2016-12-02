@@ -189,7 +189,7 @@ public class Statistics extends HttpServlet {
 		JSONObject resObj = new JSONObject();
 		int dailyUsers = 0;
 		int totalUsers = 0;
-		int dailyUserStep = (int) (ChronoUnit.DAYS.between(startDate, endDate) * (75 / 100.0f));
+		int dailyUserStep = (int) (ChronoUnit.DAYS.between(startDate, endDate) * (57 / 100.0f));
 		String totalUsersRequest = "SELECT count(*) FROM (SELECT count(user_id) FROM (SELECT DISTINCT user_id, cast(date AS DATE) AS date FROM logs WHERE code = 200 AND type = 9 AND CAST(date AS DATE) BETWEEN '"
 				+ startDate.toString() + "' AND '" + endDate.toString() + "') AS tmp GROUP BY user_id) AS t;";
 		String dailyUsersRequest = "SELECT count(*) FROM (SELECT user_id FROM (SELECT DISTINCT user_id, CAST(date AS DATE) AS date FROM logs where code = 200 AND type = 9 AND CAST(date AS DATE)  between '"

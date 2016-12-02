@@ -18,7 +18,7 @@
 			{"action":"waitfor", "time":10, "search":"#Passwd"},
 			{"action":"fill", "what":"password", "search":"#Passwd", "grave":true},
 			{"action":"submit", "search":"#gaia_loginform", "grave":true}
-			]
+		]
 	},
 	"logout":{
 		"todo":[
@@ -28,10 +28,34 @@
 			{"action":"waitload"}	
 		]
 	},
+	"switchAccount":{
+		"todo":[
+			{"action":"clickona", "search":"#yt-masthead-account-picker", "grave":true},
+			{"action":"waitfor", "search":"a[href='/logout']"},
+			{"action":"clickona", "search":"yt-masthead-picker-footer a:first-child"},
+			{"action":"waitload"},
+			{"action":"waitfor", "search":["button[href*='https://accounts.google.com/ServiceLogin?']","div[aria-label='Google']", "paper-icon-button#button"]},
+			{"action":"click", "search":"button[href*='https://accounts.google.com/ServiceLogin?']"},
+			{"action":"click", "search":"paper-icon-button#button"},
+			{"action":"waitload"},
+			{"action":"waitfor", "search":["#account-chooser-link","#account-chooser-add-account"]},
+			{"action":"aclick", "search":"#account-chooser-link"},
+			{"action":"aclick", "search":"#account-chooser-add-account"},
+			{"action":"fill", "what":"login", "search":"#Email", "grave":true},
+			{"action":"click", "search":"#next", "grave":true},
+			{"action":"waitfor", "time":10, "search":"#Passwd"},
+			{"action":"fill", "what":"password", "search":"#Passwd", "grave":true},
+			{"action":"submit", "search":"#gaia_loginform", "grave":true}
+		]
+	},
+	"checkAlreadyConnected":{
+		"todo":[
+			{"action":"waitfor", "search":"#masthead-search-term"},
+			{"check":"present", "search":"#yt-masthead-account-picker"},
+			{"who":"onPage", "search":"a.yt-masthead-picker-active-account", "attribute":"text"}
+		]
+	},
 	"checkAlreadyLogged":[
 		{"search":"#yt-masthead-account-picker"}
-	],
-	"checkChangeLogin":[
-
 	]
 }

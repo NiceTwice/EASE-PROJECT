@@ -47,7 +47,7 @@ END //
 
 CREATE PROCEDURE decreaseRatio(IN p_website_id INT(10) UNSIGNED)
 BEGIN
-  UPDATE websites SET ratio = ratio - 1 WHERE website_id = p_website_id;
+  UPDATE websites SET ratio = IF(ratio>0,ratio - 1,ratio) WHERE website_id = p_website_id;
 END //
 
 CREATE PROCEDURE setRatio(IN p_website_id INT(10) UNSIGNED, IN new_ratio INT(10) UNSIGNED)

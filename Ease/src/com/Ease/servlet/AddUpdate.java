@@ -111,6 +111,7 @@ public class AddUpdate extends HttpServlet {
 							user.tutoComplete();
 							user.updateInDB(session.getServletContext());
 						}
+						db.set("CALL increaseRatio(" + siteId + ");");
 						SI.setResponse(200, Integer.toString(app.getAppId()));
 						db.commit(transaction);
 					} else {

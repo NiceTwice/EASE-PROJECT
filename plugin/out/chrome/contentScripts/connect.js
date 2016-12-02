@@ -9,6 +9,11 @@ function isConnected(msg){
 	return true;
 }
 
+function whoIsConnected(msg){
+    console.log("-- Ease action : checking connnection --");
+    
+}
+
 function getNewLogin(msg, i){
 	if (msg.detail[i].user){
 		return {"user":msg.detail[i].user.login, "password":msg.detail[i].user.password};
@@ -40,7 +45,7 @@ function alreadyVisited(msg){
 if (window.top === window) {
 
 extension.runtime.onMessage("goooo", function(msg, sendResponse) {
-	if (msg.todo == "checkAlreadyLogged"){
+	if (msg.todo == "checkAlreadyConnected"){
         checkConnectionOverlay(msg);
 		if (isConnected(msg) == true) {
 			if (alreadyVisited(msg) == true){

@@ -1,0 +1,29 @@
+{
+    "name":"Kayak",
+    "lastlogin":"",
+    "home": "https://www.kayak.fr/",
+    "connect": {
+    	"todo": [
+            {"action":"clickona", "search": "a[id$='login']"},
+            {"action":"waitfor", "search": ".Common-Authentication-LoginForm"},
+    		{"action":"fill", "what":"login", "search":".Common-Authentication-LoginForm input.username"},
+    		{"action":"fill", "what":"password", "search":".Common-Authentication-LoginForm input.pass"},
+    		{"action":"click", "search":".Common-Authentication-LoginForm button.submit"}
+       	]
+    },
+    "logout": {
+    	"todo": [
+            {"action":"clickona", "search": "a.logout"} 
+        ]
+    },
+    "checkAlreadyLogged": [
+    	{"search":".logout"}
+    ],
+    "Facebook": {
+    	"todo": [
+            {"action":"clickona", "search": "a[id$='login']"},
+            {"action":"waitfor", "search": ".Common-Authentication-LoginForm"},
+            {"action":"click", "search":".facebookOuter .socialButtonText"},
+    	]
+    }
+}

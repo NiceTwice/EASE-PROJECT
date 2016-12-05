@@ -4,9 +4,7 @@
     "home":"http://www.seloger.com",
     "connect": {
     	"todo": [
-    		{"action":"clickona", "search":".espacePerso a"},
-    		{"action":"clickona", "search":".linkUserConnect"},
-    		{"action":"waitload"},
+            {"action":"goto", "url":"http://www.seloger.com/user,login.htm"},
     		{"action":"fill", "what":"login", "search":"#mail"},
     		{"action":"fill", "what":"password", "search":"#password"},
     		{"action":"click", "search":"form[name='userLogin'] input[type='submit']"}
@@ -14,11 +12,12 @@
     },
     "logout": {
     	"todo": [
-    		{"action":"clickona", "search":"a.btnLogout"}
+    		{"action":"clickona", "search":"a.btnLogout"},
+            {"action":"goto", "url":"http://www.seloger.com/user,login.htm"}
     	]
     },
     "checkAlreadyLogged": [
-    	{"search":"#header_connected"}
+    	{"search":"a.btn_my_account"}
     ],
     "Facebook": {
     	"todo": [

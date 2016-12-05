@@ -1,0 +1,31 @@
+{
+    "name":"Booking",
+    "lastlogin":"",
+    "home":"https://www.booking.com",
+    "connect": {
+    	"todo": [
+            {"action":"click", "search":".sign_in_wrapper"},
+            {"action":"waitfor", "search": "input.user_access_email"},
+    		{"action":"fill", "what":"login", "search":"input.user_access_email"},
+    		{"action":"fill", "what":"password", "search":"input.user_access_password"},
+    		{"action":"click", "search":"input[type='submit'].btn"}
+       	]
+    },
+    "logout": {
+    	"todo": [
+    		{"action":"click", "search":"#current_account[data-command='show-profile-menu']"},
+            {"action":"waitfor", "search": ".profile-menu__item--signout input[type='submit']"},                
+            {"action":"click", "search":".profile-menu__item--signout input[type='submit']"}
+    	]
+    },
+    "checkAlreadyLogged": [
+    	{"search":".uc-mybooking"}
+    ],
+    "Facebook": {
+    	"todo": [
+            {"action":"click", "search":".sign_in_wrapper"},
+            {"action":"waitfor", "search": "input.user_access_email"},
+            {"action":"clickona", "search":".social-connect-button--facebook"}
+    	]
+    }
+}

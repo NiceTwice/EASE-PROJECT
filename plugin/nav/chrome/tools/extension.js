@@ -12,6 +12,18 @@ var extension = {
         }
         return nb;
     },
+    reloadEaseTabs:function(){
+        chrome.windows.getAll({populate:true, windowTypes:['normal']}, function(windows){
+            for(var i in windows){
+                for(var j in windows[i].tabs){
+                    if(windows[i].tabs[j].url.indexOf("https://ease.space")==0){
+                        chrome.tabs.reload(windows[i].tabs[j].id, {}, function(){});
+                    }
+                }
+            }
+        });
+        
+    },
     storage:{
 		get:function(key, callback){
 			chrome.storage.local.get(key, function(res){

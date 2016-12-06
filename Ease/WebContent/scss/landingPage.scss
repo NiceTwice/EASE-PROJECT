@@ -165,7 +165,7 @@ header {
         top:0;
         left: 0;
         z-index: -1;
-        background-image: url(resources/landing/background-1.jpg);
+        background-image: url(../resources/landing/background-1.jpg);
         background-repeat: no-repeat;
         background-attachment: scroll;
         background-position: center center;
@@ -206,7 +206,7 @@ header .intro-text .intro-heading {
         font-style: italic;
         font-size: 40px;
         line-height: 40px;
-        margin-bottom: 25px;
+        margin-bottom: 50px;
     }
     header .intro-text .intro-heading {
         font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -214,7 +214,7 @@ header .intro-text .intro-heading {
 //        font-weight: 700;
         font-size: 75px;
         line-height: 75px;
-        margin-bottom: 50px;
+        margin-bottom: 25px;
     }
     }#portfolio .portfolio-item .portfolio-caption p, section h3.section-subheading {
         font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -233,7 +233,7 @@ header .intro-text .intro-heading {
         font-size: 16px;
         text-transform: none;
         font-weight: 400;
-        margin-bottom: 40px;
+        margin-bottom: 35px;
     }
     @media (min-width:768px) {
         section {
@@ -810,7 +810,7 @@ header .intro-text .intro-heading {
       }
 
       section.vp {
-        padding: 40px 0px;
+        padding: 35px 0px 75px 0px;
         text-align: center;
         background-color: #eff1ff;
         z-index: 10;
@@ -856,7 +856,7 @@ header .intro-text .intro-heading {
                    margin-bottom: 10px;
                    span {
                       display: inline-block;
-                      max-width: 80%;
+                      max-width: 85%;
                       font-size: 18px;
                       color: #3f424a;
                   }
@@ -1029,7 +1029,7 @@ header .intro-text .intro-heading {
 
 @media screen and (min-width: 771px) {
 section {
-    padding: 40px 0px;
+    padding: 75px 0px;
 }
 header {
     .container {
@@ -1219,6 +1219,46 @@ header {
 }
 
 /* ease popups */
+.submitButton {
+    transition: opacity 0.3s, visibility 0.3s;
+    opacity: 1;
+    visibility: visible;
+    z-index: 1;
+    pointer-events: auto;
+    &.not-show {
+        transition: opacity 0.3s, visibility 0.3s;
+        opacity: 0;
+        visibility: hidden;
+        z-index: -1;
+        pointer-events: none;
+    }
+}
+
+.alert-message {
+    width: 100%;
+    font-size: 1.3vw;
+    font-weight: 600;
+}
+
+.alert-message, .loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    height: 100%;
+    transition: visibility .3s, opacity .3s;
+    visibility: hidden;
+    opacity: 0;
+    z-index: -1;
+    pointer-events: none;
+    &.show {
+        transition: visibility .3s, opacity .3s;
+        visibility: visible;
+        opacity: 1;
+        z-index: 1;
+        pointer-events: auto;
+    }
+}
 
 #signUpPopup {
     .popupBody {

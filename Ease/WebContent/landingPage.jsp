@@ -23,6 +23,7 @@ pageEncoding="UTF-8"%>
 	<link rel="manifest" href="manifest.json">
 
 	<script src="js/basic-utils.js"></script>
+	<script src="js/postHandler.js"></script>
 	<script src="js/checkForInvitation.js"></script>
 	<script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js">
@@ -69,9 +70,9 @@ pageEncoding="UTF-8"%>
 	<header>
 		<div class="container">
 			<div class="intro-text">
-				<div class="intro-lead-in">Never bother about authentication again</div>
 				<div class="intro-heading">A simple homepage to access your web</div>
-				<a href="#services" class="btn btn-xl signUpButton">Start right now !</a>
+				<div class="intro-lead-in">Never bother about authentication again</div>
+				<a href="#services" class="btn btn-xl signUpButton">Commencez gratuitement !</a>
 			</div>
 		</div>
 	</header>
@@ -105,7 +106,7 @@ pageEncoding="UTF-8"%>
 						<i class="fa fa-circle-thin fa-stack-2x"></i>
 						<i class="fa fa-magic fa-stack-1x"></i>
 					</span>
-					<p><span>N'utilisez plus jamais de mots de passe:</span> Ease vous connecte automagiquement</p>
+					<p><span>N'utilisez plus jamais de mots de passe:</span> Ease vous connecte en 1 clic automagiquement</p>
 				</div>
 				<div class="row w70 showcase">
 					<span class="fa-stack fa-lg">
@@ -119,21 +120,21 @@ pageEncoding="UTF-8"%>
 						<i class="fa fa-circle-thin fa-stack-2x"></i>
 						<i class="fa fa-globe fa-stack-1x"></i>
 					</span>
-					<p><span>Accédez à votre web depuis n’importe où:</span> Ease est disponible sur tout ordinateur</p>
+					<p><span>Accédez à vos sites depuis n’importe où:</span> Ease est disponible sur tout ordinateur</p>
 				</div>
 				<div class="row w70 showcase">
 					<span class="fa-stack fa-lg">
 						<i class="fa fa-circle-thin fa-stack-2x"></i>
 						<i class="fa fa-refresh fa-stack-1x"></i>
 					</span>
-					<p><span>Centralisez votre web:</span> Ease intègre vos mots de passe et les sign ins Facebook et Linkedin	</p>
+					<p><span>Centralisez votre web:</span> Ease intègre tout type de comptes comme ceux connectés avec Facebook et LinkedIn</p>
 				</div>
 			</div>
 		</section>
 		<section class="vp" style="background-color:#eee;">
 			<div clas="container">
 				<div class="row">
-					<a href="#services" class="btn btn-xl signUpButton">Start right now !</a>
+					<a href="#services" class="btn btn-xl signUpButton">Commencez gratuitement !</a>
 				</div>
 			</div>
 		</section>
@@ -175,7 +176,7 @@ pageEncoding="UTF-8"%>
 					<div class="fList right">
 						<div class="feature">
 							<span>
-								Logout général de tout votre web
+								Déconnexion centralisée de votre web
 							</span>
 							<i class="fa fa-check" aria-hidden="true"></i>
 						</div>
@@ -193,7 +194,7 @@ pageEncoding="UTF-8"%>
 						</div>
 						<div class="feature">
 							<span>
-								Gestion sign in (Facebook, Google etc..)
+								Gestion des apps connectées avec Facebook et LinkedIn
 							</span>
 							<i class="fa fa-check" aria-hidden="true"></i>
 						</div>
@@ -319,7 +320,7 @@ pageEncoding="UTF-8"%>
 		<section class="vp" style="background-color:white;">
 			<div clas="container">
 				<div class="row">
-					<a href="#services" class="btn btn-xl signUpButton">Start right now !</a>
+					<a href="#services" class="btn btn-xl signUpButton">Commencez gratuitement !</a>
 				</div>
 			</div>
 		</section>
@@ -372,6 +373,7 @@ pageEncoding="UTF-8"%>
 		<script src="js/bootstrapjq.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 		<div class="popupHandler">
+		<div class="overlay"></div>
 		<div class="easePopup" id="signUpPopup">
 			<div class="title">
 				<p>
@@ -380,7 +382,13 @@ pageEncoding="UTF-8"%>
 			</div>
 			<div class="bodysHandler">
 			<div class="popupBody" id="2">
-				<div class="handler">
+				<form class="handler" action="thefamily">
+					<div class="row">
+						<p class="row-heading">
+						How would you like us to call you ?
+						</p>
+						<input type="text" name="fname" placeholder="Name..." />
+					</div>
 					<div class="row">
 						<p class="row-heading">
 						Create your Ease password :
@@ -392,6 +400,8 @@ pageEncoding="UTF-8"%>
 						</div>
 					</div>
 					<div class="row">
+							<input type="hidden" name="email" value=<%= request.getParameter("email")%> />
+							<input type="hidden" name="invitationCode" value=<%= request.getParameter("invitationCode") %> />
 						<span class="input">
 							<input type="password" name="password" placeholder="Your password..." />
 							<div class="showPassDiv">
@@ -408,18 +418,20 @@ pageEncoding="UTF-8"%>
 						</span>
 					</div>
 					<div class="row text-center">
-						<button class="btn">I'm ready !</button>
+						<img class="loading" src="resources/other/facebook-loading.svg"/>
+						<button class="btn submitButton" type="submit">I'm ready !</button>
+						<p class="alert-message"></p>
 					</div>
-				</div>
+				</form>
 				</div>
 				<div class="popupBody show" id="1">
-				<div class="handler">
-					<div class="row">
+				<form class="handler" action="directInvitation">
+<!--					<div class="row">
 						<p class="row-heading">
 						How would you like us to call you ?
 						</p>
 						<input type="text" name="name" placeholder="Name..." />
-					</div>
+					</div>-->
 					<div class="row">
 						<p class="row-heading">
 						What's is your email ?
@@ -431,9 +443,11 @@ pageEncoding="UTF-8"%>
 						<input type="checkbox" value="">
 					</div>
 					<div class="row text-center">
-						<button class="btn">Let's start !</button>
+						<img class="loading" src="resources/other/facebook-loading.svg"/>
+						<button class="btn submitButton" type="submit">Let's start !</button>
+						<p class="alert-message"></p>
 					</div>
-				</div>
+				</form>
 				</div>
 			</div>
 		</div>
@@ -444,6 +458,12 @@ pageEncoding="UTF-8"%>
 				this.handler = $(elem).closest('.popupHandler');
 				this.qRoot = $(elem);
 
+				this.openRegistration = function(){
+					self.qRoot.find('#2').addClass('show');
+					self.qRoot.find('#1').removeClass('show');					
+					self.handler.addClass('show');
+					$('body').css('overflow', 'hidden');
+				}
 				this.open = function(){
 					self.handler.addClass('show');
 					$('body').css('overflow', 'hidden');
@@ -452,14 +472,111 @@ pageEncoding="UTF-8"%>
 					self.handler.removeClass('show');
 					$('body').css('overflow', '');
 				};
-				this.qRoot.find('#1 .btn').click(function(){
-					self.qRoot.find('#1').removeClass('show');
-					self.qRoot.find('#2').addClass('show');
+				this.qRoot.find('#1 form').submit(function(e){
+					e.preventDefault();
+					var self = $(this);
+					var emailVal = $(this).find("input[type='email']").val();
+					var loading = $(this).find('.loading');
+					var submitButton = $(this).find(".submitButton");
+					var alertMessage = $(this).find(".alert-message");
+	
+					if (!emailVal.length)
+						return;
+					if (!($(this).find(".terms input[type='checkbox']").prop('checked'))){
+						return;
+					}
+
+					loading.addClass('show');
+					submitButton.addClass('not-show');
+					postHandler.post($(this).attr('action'),
+					{
+						email : emailVal
+					},
+					function(){
+						loading.removeClass('show');
+					},
+					function(retMsg) {
+						alertMessage.text(retMsg);
+						alertMessage.css('color', '#24d666');
+						alertMessage.addClass('show');
+						setTimeout(function(){
+							alertMessage.removeClass('show');
+							submitButton.removeClass('not-show');
+						}, 7000);
+					}, 
+					function(retMsg) {
+						alertMessage.text(retMsg);
+						alertMessage.css('color', '#ec555b')
+						alertMessage.addClass('show');
+						setTimeout(function(){
+							alertMessage.removeClass('show');
+							submitButton.removeClass('not-show');
+						}, 3000);
+					},
+					'text'
+					);
+				});
+				this.qRoot.find('#2 form').submit(function(e){
+					e.preventDefault();
+					var self = $(this);
+					var name = $(this).find("input[name='fname']").val();
+					var email = $(this).find("input[name='email']").val();
+					var code = $(this).find("input[name='invitationCode']").val();
+					var password = $(this).find("input[name='password']").val();
+					var confirmPassword = $(this).find("input[name='confirmPassword']").val();
+
+					var loading = $(this).find('.loading');
+					var submitButton = $(this).find(".submitButton");
+					var alertMessage = $(this).find(".alert-message");
+	
+					if (!name.length || !email.length || !code.length || !(password == confirmPassword))
+						return;
+
+					loading.addClass('show');
+					submitButton.addClass('not-show');
+					postHandler.post($(this).attr('action'),
+					{
+						email : email,
+						fname : name,
+						invitationCode : code,
+						password : password,
+						confirmPassword : confirmPassword,
+						lname : "unknown"
+					},
+					function(){
+						loading.removeClass('show');
+					},
+					function(retMsg) {
+						alertMessage.text(retMsg);
+						alertMessage.css('color', '#24d666');
+						alertMessage.addClass('show');
+						setTimeout(function() {
+							window.location= "index.jsp";
+						}, 750);
+					}, 
+					function(retMsg) {
+						alertMessage.text(retMsg);
+						alertMessage.css('color', '#ec555b')
+						alertMessage.addClass('show');
+						setTimeout(function(){
+							alertMessage.removeClass('show');
+							submitButton.removeClass('not-show');
+						}, 3000);
+					},
+					'text'
+					);
 				});
 			};
 			var easeSignUpPopup = new signUpPopup($('#signUpPopup'));
 			$('.signUpButton').click(function(){
 				easeSignUpPopup.open();
+			});
+		</script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				if ($('#2').find("input[name='email']").val() != 'null'){
+					easeSignUpPopup.openRegistration();
+				}
 			});
 		</script>
 	</body>

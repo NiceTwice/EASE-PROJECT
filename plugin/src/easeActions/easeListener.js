@@ -1,4 +1,4 @@
-$('body').prepend('<div id="ease_extension" style="dislay:none;">');
+$('body').prepend('<div id="ease_extension" safariversion="2.0.1" style="dislay:none;">');
 $(".displayedByPlugin").show();
 extension.runtime.sendMessage("getSettings", {}, function(response) {
     if(response.homepage){

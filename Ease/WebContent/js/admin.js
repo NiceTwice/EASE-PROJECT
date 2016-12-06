@@ -126,7 +126,7 @@ function printRequestedWebsites(string) {
 		}
 	}
 	$('.requestedWebsite .quit').click(function(){
-		eraseWebsite($(this));
+		eraseWebsite($(this).parent(".requestedWebsite"));
 	});
 }
 

@@ -1,3 +1,5 @@
+extension.reloadEaseTabs();
+
 function getNewLogin(msg, i){
 	if (msg.detail[i].user){
 		return {"user":msg.detail[i].user.login, "password":msg.detail[i].user.password};

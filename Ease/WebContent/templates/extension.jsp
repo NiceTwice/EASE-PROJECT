@@ -1,21 +1,35 @@
 		<div id="downloadExtension" class="centeredItem" style="display:none;">
 		<div class="popupContent">
-			<p class="title classicContent">You are almost done ...<i class="fa fa-heart" aria-hidden="true"></i></p>
-			<p class="title safariUpdate">Your addon is too old ! <i class="fa fa-recycle" aria-hidden="true"></i></p>
-			<p class="info classicContent">Download the addon to make Ease automagically work on this computer</br>For now, it only works on Chrome and Safari.</p>
-			<p class="info safariUpdate">The new addon version is now available. We fixed several bugs and made it faster !<br> Update it to make Ease automagically work on this computer. </p>
+			<p class="title classicContent">Get the Ease extension ! <i class="fa fa-heart" aria-hidden="true"></i></p>
+			<p class="title safariUpdate">You must uninstall and reinstall the extension ! <i class="fa fa-recycle" aria-hidden="true"></i></p>
+			<p class="info classicContent">Download the extension to make Ease automagically work on this computer</br>For now, it only works on Chrome and Safari.</p>
+			<p class="info safariUpdate">We are currently facing problems with the last extension version. It is deprecated and can cause several problems on your browser.</br>We <span>strongly recommend</span> you to uninstall the Ease extension and redownload it !</p>
 			<p><i class="fa fa-angle-down" aria-hidden="true"></i></p>
-			<button class="install-button classicContent">Get Ease Addon</button>
-			<button class="install-button safariUpdate">Update Ease Addon</button>
-			<p id="moreInfoButton" style="margin-top: 5px;">Why is the addon necessary.</p>
-			<p id="safariInfoButton" style="margin-top: 5px; display:none;">I already have the addon !</p>
+			<button class="install-button classicContent">Get Ease Extension</button>
+			<button class="install-button safariUpdate">Follow the steps</button>
+			<p id="moreInfoButton" style="margin-top: 5px;">Why is the extension necessary.</p>
+			<!-- <p id="safariInfoButton" style="margin-top: 5px; display:none;">I already have the addon !</p> -->
+		</div>
+		<div class="safariHelper" id="uninstall" style="display: none;">
+			<h1 style="margin-top: 2px; font-size: 37px;">How to uninstall the extension ?</h1>
+			<p style="font-size: 16px;">Go to "Safari" -> "Preferences" -> "Extensions" and click on "uninstall" on the Ease extension.</p>
+			<div style="width: 40%;margin:5px auto 5px auto;display:inline-block;"><img style="width: 100%" src="resources/other/preferences-menu.png"/></div>
+			<div style="width: 50%;margin:5px auto 5px auto;display:inline-block;"><img style="width: 100%" src="resources/other/extensions-menu.png"/></div>
+			<p style="font-size: 16px;">Once you uninstalled the extension, just reload this page.</br>Then follow the steps to reinstall it.</p>
+			<button class="safariUninstall">Reload</button>
+		</div>
+		<div class="safariHelper" id="installdownloaded" style="display: none;">
+			<h1 style="margin-top: 2px; font-size: 37px;">Install the extension</h1>
+			<p style="font-size: 16px;">Now that you have downloaded the EaseExtension.safariextz file, you have to click on it in your downloads folder to install the extension.</p>
+			<div style="width: 55%;margin:5px auto 5px auto;"><img style="width: 100%" src="resources/other/safari-addon-example.png"/></div>
+			<p style="font-size: 16px;">When the installation is completed, this page should reload automatically.</br><span>You will then be able to fully use Ease ;)</span></p>
 		</div>
 		<div class="safariHelper" id="afterdownload" style="display: none;">
-			<h1 style="margin-top: 0px;">Final step</h1>
-			<p style="font-size: 1.3em;">Once you have downloaded our addon <a href="https://safari-extensions.apple.com/details/?id=com.ease.easeextension-45P859NKD6" target="_blank">on the safari store</a>, just <a href="/">reload this page</a> :)</p>
+			<h1 style="margin-top: 2px; font-size: 37px;">Final step</h1>
+			<p style="font-size: 16px;">Once you have downloaded our extension, just <a href="/">reload this page</a> :)</p>
 		</div>
 		<div class="safariHelper" id="alreadydownloaded" style="display: none;">
-			<p style="font-size: 1.2em; margin-top:5px;">If you have already downloaded the addon, try to double click on "EaseExtension.safariextz" in your downloads folder to install it. Then <a href="/">reload this page</a>.
+			<p style="font-size: 16px; margin-top:5px;">If you have already downloaded the addon, try to double click on "EaseExtension.safariextz" in your downloads folder to install it. Then <a href="/">reload this page</a>.
 			<br>If it's still not working, you can contact us on <a href="https://www.facebook.com/EasePlatform/?fref=ts" target="_blank">our facebook page.</a></p>
 			<div style="width: 55%;margin:5px auto 5px auto;"><img style="width: 100%" src="resources/other/safari-addon-example.png"/></div>
 			<button id="returnButtonSafari">OK, got it.</button>
@@ -28,14 +42,14 @@
 
 				<div class="textHelper">
 					<p style="font-size: 20px; font-weight: 600;">What ease this ?</p>
-					<p>Ease uses an Ä<span>Addon</span> to <span>log you</span> on your favorite websitesÄù. It is a small piece of software that you add to your browser to customize its capabilities.
+					<p>Ease uses an Ä<span>extension</span> to <span>log you</span> on your favorite websitesÄù. It is a small piece of software that you add to your browser to customize its capabilities.
 					</p>
 				</div>
 			</div>
 			<div style="text-align:left;">
-			<p>Without this addon, Ease can't fill the input to log you. The few datas stored in it are <span>fully encrypted</span> and are <span>never used for commercial purposes</span>.
+			<p>Without this extension, Ease can't fill the input to log you. The few datas stored in it are <span>fully encrypted</span> and are <span>never used for commercial purposes</span>.
 			</p>
-			<p>Downloading the addon is a <span>1 step</span> process directly from Ease.</p>
+			<p>Downloading the extension is a <span>1 step</span> process directly from Ease.</p>
 			</div>
 			<button id="returnButton">OK, got it.</button>
 		</div>
@@ -50,6 +64,9 @@
 				$('#downloadExtension .popupHelper').css('display', 'none');				
 			});
 			
+			$('#uninstall .safariUninstall').click(function(){
+				window.location.replace("index.jsp");
+			});
 			/*$('#downloadExtension #safariInfoButton').click(function(){
 				$('#downloadExtension .popupContent').css('display', 'none');
 				$('#downloadExtension #alreadydownloaded').css('display', 'block');

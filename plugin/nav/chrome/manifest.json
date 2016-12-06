@@ -17,7 +17,8 @@
 "content_scripts": [
     {
       "matches": ["https://ease.space/*", "https://www.ease.space/*", "http://ease.space/*", "http://www.ease.space/*","http://localhost:8080/HelloWorld/*", "https://localhost:8443/HelloWorld/*", "http://localhost:8080/BackofficeUniv/*"],
-      "js": ["jquery-3.1.0.js", "tools/extension.js", "easeActions/easeListener.js", "easeActions/updatesSender.js"]
+      "js": ["jquery-3.1.0.js", "tools/extension.js", "easeActions/easeListener.js", "easeActions/updatesSender.js"],
+      "run_at":"document_end"
     },
     {
         "matches": ["<all_urls>"],
@@ -25,7 +26,8 @@
     },
     {
         "matches":["https://www.facebook.com/*"],
-        "js":["facebookCo/checkFacebookConnection.js"]
+        "js":["facebookCo/checkFacebookConnection.js"],
+        "run_at":"document_end"
     }
   ],
     

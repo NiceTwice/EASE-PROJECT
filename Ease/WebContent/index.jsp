@@ -52,7 +52,6 @@ pageEncoding="UTF-8"%>
 	<script src="js/catalog/updates/update.js"></script>
 	<script src="js/catalog/updates/updatesManager.js"></script>
 	<script src="js/catalog/catalog.js"></script>
-	<script src="js/extension.js" ></script>
 	<script src="js/profiles.js"></script>
 	<script src="js/alertPopup.js"></script>
 	<script src="js/loading.js"></script>

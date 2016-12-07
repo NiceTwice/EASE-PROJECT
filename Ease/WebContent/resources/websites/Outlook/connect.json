@@ -1,0 +1,24 @@
+{
+	"name":"Outlook",
+	"lastLogin":"",
+	"home":"https://outlook.live.com/owa/?nlp=1",
+	"connect":{
+        "todo":[
+            {"action":"waitfor", "time":200,"search":"input[name='loginfmt']"},
+            {"action":"fill", "what":"login", "search":"input[name='loginfmt']"},
+            {"action":"click", "search":"input[type='submit']"},
+            {"action":"waitfor", "search":"input[name='login']"},
+            {"action":"fill", "what":"password", "search":"input[name='passwd']"},
+            {"action":"click", "search":"input[type='submit']"}
+        ]
+    },
+	"logout":{
+		"todo":[
+			{"action":"goto", "url":"https://outlook.live.com/owa/logoff.owa"},
+			{"action":"goto", "url":"https://outlook.live.com/owa/?nlp=1"}
+		]
+	},
+	"checkAlreadyLogged":[
+		{"action":"search", "search":"#O365_MainLink_Logo"}
+	]
+}

@@ -6,16 +6,41 @@ extension.runtime.bckgrndOnMessage("getPopupContent", function(msg, senderTab, s
 
 extension.runtime.bckgrndOnMessage("TestConnection", function(msg, senderTab, sendResponse){
     results[msg.detail[msg.detail.length-1].website.name]="*** Testing website "+msg.detail[msg.detail.length-1].website.name+" ***";
-    connectTo(msg);
+    connectTo(msg, null, function(){
+        //TODO
+    });
 });
 
-function connectTo(msg){
+extension.runtime.bckgrndOnMessage("TestMultipleConnections", function(msg, senderTab, sendResponse){
+    multipleTests(msg, null, 0);
+});
+
+function multipleTests(msg, tab, i){
+    var websiteMsg = {};
+    if(i<msg.detail.length){
+        websiteMsg.detail = msg.detail[i];
+         results[websiteMsg.detail[websiteMsg.detail.length-1].website.name]="*** Testing website "+websiteMsg.detail[websiteMsg.detail.length-1].website.name+" ***";
+        connectTo(websiteMsg, tab, function(tab){
+            multipleTests(msg, tab, i+1);
+        });
+    } else {
+        //TODO
+    }
+   
+}
+
+function connectTo(msg, currentTab, callback){
     msg.todo = "checkAlreadyLogged";
     msg.bigStep = 0;
     msg.actionStep = 0;
     msg.waitreload= false;
     extension.currentWindow(function(currentWindow) {
-        extension.tabs.create(currentWindow, msg.detail[0].website.home, false, function(tab){
+        if(currentTab == null){
+            extension.tabs.create(currentWindow, msg.detail[0].website.home, false, connection);
+        } else {
+            extension.tabs.update(currentTab, msg.detail[0].website.home, connection);
+        }
+        function connection(tab){
             extension.tabs.onUpdated(tab, function (newTab) {
                 tab = newTab;
                 extension.tabs.inject(tab, ["tools/extensionLight.js","overlay/overlay.css", "overlay/injectOverlay.js"], function(){});
@@ -56,8 +81,8 @@ function connectTo(msg){
                                             msg.todo = "checkAlreadyLogged";
                                             msg.result = "Success";
                                             setTimeout(function(){
-                                                checkConnected(msg, tab, currentWindow, "logout");
-                                            },20000);
+                                                checkConnected(msg, tab, currentWindow, "logout", callback);
+                                            },5000);
                                             extension.tabs.onUpdatedRemoveListener(tab);
                                             extension.tabs.onMessageRemoveListener(tab);
                                         }
@@ -65,6 +90,7 @@ function connectTo(msg){
                                 }
                             } else if (response != undefined){
                                 printConsole(false, "connection", msg);
+                                callback(tab);
                                 msg.result = "Fail";
                                 //extension.tabs.close(tab, function(){});
                                 extension.tabs.onUpdatedRemoveListener(tab);
@@ -74,11 +100,11 @@ function connectTo(msg){
                     });
                 });
             });
-        });
+        }
     });   
 }
 
-function logoutFrom(msg, oldTab, currentWindow) {
+function logoutFrom(msg, oldTab, currentWindow, callback) {
     msg.todo = "logout";
     msg.bigStep = msg.detail.length-1;
     msg.actionStep = 0;
@@ -99,10 +125,11 @@ function logoutFrom(msg, oldTab, currentWindow) {
                                     } else {
                                         extension.tabs.onUpdatedRemoveListener(tab);
                                         extension.tabs.onMessageRemoveListener(tab);
-                                        reconnect(msg, tab, currentWindow);
+                                        reconnect(msg, tab, currentWindow, callback);
                                     }
                                 } else if (response != undefined){
                                     printConsole(false, "logout", msg);
+                                    callback(tab);
                                     extension.tabs.onMessageRemoveListener(tab);
                                     extension.tabs.onUpdatedRemoveListener(tab);
                                     //extension.tabs.close(tab, function() {});
@@ -114,7 +141,7 @@ function logoutFrom(msg, oldTab, currentWindow) {
             });   
 }
 
-function reconnect(msg, tab, currentWindow){
+function reconnect(msg, tab, currentWindow, callback){
     msg.todo = "checkAlreadyLogged";
     msg.bigStep = 0;
     msg.actionStep = 0;
@@ -152,8 +179,8 @@ function reconnect(msg, tab, currentWindow){
                                             msg.todo = "checkAlreadyLogged";
                                             msg.result = "Success";
                                            setTimeout(function(){
-                                                checkConnected(msg, tab, currentWindow, "end");
-                                            }, 20000);
+                                                checkConnected(msg, tab, currentWindow, "end", callback);
+                                            }, 5000);
                                             extension.tabs.onUpdatedRemoveListener(tab);
                                             extension.tabs.onMessageRemoveListener(tab);
                                         }
@@ -161,11 +188,13 @@ function reconnect(msg, tab, currentWindow){
                                 }
                             } else if(response.type == "logout fail") {
                                         printConsole(false, "logout", msg);
+                                        callback(tab);
                                         extension.tabs.onMessageRemoveListener(tab);
                                         extension.tabs.onUpdatedRemoveListener(tab);
                                         //extension.tabs.close(tab, function() {});
                             } else if (response != undefined){
                                         printConsole(false, "reconnection", msg);
+                                        callback(tab);
                                         extension.tabs.onMessageRemoveListener(tab);
                                         extension.tabs.onUpdatedRemoveListener(tab);
                                         //extension.tabs.close(tab, function() {});
@@ -176,7 +205,7 @@ function reconnect(msg, tab, currentWindow){
                 });  
 }
 
-function checkConnected(msg, tab, currentWindow, nextAction){
+function checkConnected(msg, tab, currentWindow, nextAction, callback){
     msg.todo = "checkAlreadyLogged";
     msg.bigStep = msg.detail.length-1;
     msg.actionStep = 0;
@@ -188,21 +217,27 @@ function checkConnected(msg, tab, currentWindow, nextAction){
                         extension.tabs.onUpdatedRemoveListener(tab);
                         extension.tabs.onMessageRemoveListener(tab);
                         if(nextAction=="logout")
-                            logoutFrom(msg, tab, currentWindow);
+                            logoutFrom(msg, tab, currentWindow, callback);
                         else if(nextAction=="end"){
                             printConsole(true, "", msg);
-                            extension.tabs.close(tab, function() {});
+                            callback(tab);
+                            //extension.tabs.close(tab, function() {});
                         }
                     } else if(response.type == "fail") {
-                        if(nextAction=="logout")
+                        if(nextAction=="logout"){
                             printConsole(false, "connection", msg);
-                        else if(nextAction="end")
+                            callback(tab);
+                        }
+                        else if(nextAction="end"){
                             printConsole(false, "reconnection", msg);
+                            callback(tab);
+                        }
                         extension.tabs.onMessageRemoveListener(tab);
                         extension.tabs.onUpdatedRemoveListener(tab);
                         //extension.tabs.close(tab, function() {});
                     } else if (response != undefined){
                         printConsole(false, "unknown error", msg);
+                        callback(tab);
                         extension.tabs.onMessageRemoveListener(tab);
                         extension.tabs.onUpdatedRemoveListener(tab);
                         //extension.tabs.close(tab, function() {});
@@ -221,11 +256,11 @@ function printConsole(success, type, msg){
         var connectionType = "connection with website "+ msg.detail[msg.detail.length-1].logWith;
     }
     if(success){
-        results[website]="> "+website + " : SUCCESS connection, logout and reconnection for "+connectionType;
+        results[website]="> "+website + " : SUCCESS connection, logout and reconnection for "+connectionType+ " (login : "+msg.detail[msg.detail.length-1].user.login+")";
     } else {
         if(type != "logout")
-            results[website]="> "+website + " : FAIL "+type+" for "+connectionType;
+            results[website]="> "+website + " : FAIL "+type+" for "+connectionType + " (login : "+msg.detail[msg.detail.length-1].user.login+")";
         else
-            results[website]="> "+website + " : FAIL "+type;
+            results[website]="> "+website + " : FAIL "+type + " (login : "+msg.detail[msg.detail.length-1].user.login+")";
     }
 }

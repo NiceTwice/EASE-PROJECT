@@ -58,6 +58,12 @@
 		</button>
 	</div>
 	<div>
+		<button id="testWebsites" state="off"
+			class="button adminButton">
+			<img src="resources/icons/robo_test.png" />
+		</button>
+	</div>
+	<div>
 		<button id="cleanSavedSessions" state="off"
 			class="button adminButton">
 			<img src="resources/icons/vacuum-cleaner.png" />

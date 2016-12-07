@@ -1,4 +1,5 @@
 extension.reloadEaseTabs();
+console.log("le reload frère");
 
 function getNewLogin(msg, i){
 	if (msg.detail[i].user){

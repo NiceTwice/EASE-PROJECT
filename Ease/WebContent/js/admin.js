@@ -21,6 +21,8 @@ $(document).ready(function() {
 	
 	$("#cleanSavedSessions").click(cleanSavedSessions);
 	
+	$("#testWebsites").click(testWebsites);
+	
 	/* Move websites positions in catalog */
 	$(".goTop").click(function() {
 		changePositionForm.setPostName("goTop");
@@ -327,6 +329,24 @@ function cleanSavedSessions(){
 		function(){},
 		function(retMsg){
 			console.log(retMsg);
+		},
+		function(retMsg){
+			console.log(retMsg);
+		},
+		'text'
+	);
+}
+
+function testWebsites(){
+	postHandler.post(
+		"testWebsites",
+		{},
+		function(){},
+		function(retMsg){
+			var json = {};
+			json.detail = JSON.parse(retMsg);
+    		event = new CustomEvent("MultipleTests", json);
+    		document.dispatchEvent(event);
 		},
 		function(retMsg){
 			console.log(retMsg);

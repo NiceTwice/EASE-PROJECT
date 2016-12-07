@@ -114,7 +114,6 @@ public class RegistrationTheFamily extends HttpServlet {
 						db.set("delete from invitations where email = '" + email + "' and linkCode = '" + invitationCode + "';");
 						session.setAttribute("User", user);
 						db.set("CALL addEmail(" + user.getId() + ", '" + user.getEmail() + "');");
-						System.out.println("UPDATE usersEmails SET verified = 1 WHERE user_id = " + user.getId() + " AND email = '" + user.getEmail() + "';");
 						db.set("UPDATE usersEmails SET verified = 1 WHERE user_id = " + user.getId() + " AND email = '" + user.getEmail() + "';");
 						SessionSave sessionSave = new SessionSave(user, session.getServletContext());
 						session.setAttribute("User", user);

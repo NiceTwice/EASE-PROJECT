@@ -1240,6 +1240,13 @@ header {
     font-weight: 600;
 }
 
+#validatorPassword, #validatorConfirmPass {
+    position: absolute;
+    height: 68%;
+    left: 100%;
+    margin-left: 2%;
+    top: 11%;
+}
 .alert-message, .loading {
     position: absolute;
     top: 50%;
@@ -1263,8 +1270,13 @@ header {
 #signUpPopup {
     .popupBody {
         .handler {
-//            position: absolute;
-  //          top:0;
+            .row {
+                .progress {
+                    height: 0.25vw;
+                    margin-top: 0.15vw;
+                    margin-bottom: 0px;
+                }
+            }
         }
         .handler#1{
             left: 0;

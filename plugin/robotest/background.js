@@ -34,6 +34,8 @@ function connectTo(msg, currentTab, callback){
     msg.bigStep = 0;
     msg.actionStep = 0;
     msg.waitreload= false;
+    var waitBeforeNext = false;
+    var nextDone = false;
     extension.currentWindow(function(currentWindow) {
         if(currentTab == null){
             extension.tabs.create(currentWindow, msg.detail[0].website.home, false, connection);
@@ -46,6 +48,14 @@ function connectTo(msg, currentTab, callback){
                 extension.tabs.inject(tab, ["tools/extensionLight.js","overlay/overlay.css", "overlay/injectOverlay.js"], function(){});
             });
             extension.tabs.onMessage(tab, "reloaded", function (event, sendResponse1) {
+                if(waitBeforeNext){
+                    if(!nextDone){
+                        nextDone = true;
+                        checkConnected(msg, tab, currentWindow, "logout", callback);
+                        extension.tabs.onUpdatedRemoveListener(tab);
+                        extension.tabs.onMessageRemoveListener(tab);
+                    }
+                } else {
                 extension.tabs.inject(tab, ["tools/extension.js","jquery-3.1.0.js","contentScripts/actions.js"], function(){
                     extension.tabs.sendMessage(tab, "goooo", msg, function(response){
                         if (response){
@@ -80,11 +90,15 @@ function connectTo(msg, currentTab, callback){
                                         } else {
                                             msg.todo = "checkAlreadyLogged";
                                             msg.result = "Success";
+                                            waitBeforeNext = true;
                                             setTimeout(function(){
-                                                checkConnected(msg, tab, currentWindow, "logout", callback);
-                                            },5000);
-                                            extension.tabs.onUpdatedRemoveListener(tab);
-                                            extension.tabs.onMessageRemoveListener(tab);
+                                                if(!nextDone){
+                                                    nextDone = false;
+                                                    checkConnected(msg, tab, currentWindow, "logout", callback);
+                                                    extension.tabs.onUpdatedRemoveListener(tab);
+                                                    extension.tabs.onMessageRemoveListener(tab);
+                                                }
+                                            },20000);
                                         }
                                     }
                                 }
@@ -99,6 +113,7 @@ function connectTo(msg, currentTab, callback){
                         }
                     });
                 });
+                }
             });
         }
     });   
@@ -143,14 +158,24 @@ function logoutFrom(msg, oldTab, currentWindow, callback) {
 
 function reconnect(msg, tab, currentWindow, callback){
     msg.todo = "checkAlreadyLogged";
-    msg.bigStep = 0;
+    msg.bigStep = msg.detail.length - 1;
     msg.actionStep = 0;
     msg.waitreload= false;
+    var waitBeforeNext = false;
+    var nextDone = false;
     extension.tabs.onUpdated(tab, function (newTab) {
         tab = newTab;
         extension.tabs.inject(tab, ["tools/extensionLight.js","overlay/overlay.css", "overlay/injectOverlay.js"], function(){});
     });
     extension.tabs.onMessage(tab, "reloaded", function (event, sendResponse1) {
+        if(waitBeforeNext){
+            if(!nextDone){
+                nextDone = true;
+                checkConnected(msg, tab, currentWindow, "end", callback);
+                extension.tabs.onUpdatedRemoveListener(tab);
+                extension.tabs.onMessageRemoveListener(tab);
+            }
+        } else {
         extension.tabs.inject(tab, ["tools/extension.js","jquery-3.1.0.js","contentScripts/actions.js"], function(){
                 extension.tabs.sendMessage(tab, "reconnect", msg, function(response){
                         if (response){
@@ -178,11 +203,15 @@ function reconnect(msg, tab, currentWindow, callback){
                                         } else {
                                             msg.todo = "checkAlreadyLogged";
                                             msg.result = "Success";
-                                           setTimeout(function(){
-                                                checkConnected(msg, tab, currentWindow, "end", callback);
-                                            }, 5000);
-                                            extension.tabs.onUpdatedRemoveListener(tab);
-                                            extension.tabs.onMessageRemoveListener(tab);
+                                            waitBeforeNext = true;
+                                            setTimeout(function(){
+                                                if(!nextDone){
+                                                    nextDone = true;
+                                                    checkConnected(msg, tab, currentWindow, "end", callback);
+                                                    extension.tabs.onUpdatedRemoveListener(tab);
+                                                    extension.tabs.onMessageRemoveListener(tab);
+                                                }
+                                            }, 20000);
                                         }
                                     }
                                 }
@@ -202,7 +231,8 @@ function reconnect(msg, tab, currentWindow, callback){
                         } 
                             });
                         });
-                });  
+                }
+        });  
 }
 
 function checkConnected(msg, tab, currentWindow, nextAction, callback){
@@ -251,16 +281,16 @@ function checkConnected(msg, tab, currentWindow, nextAction, callback){
 function printConsole(success, type, msg){
     var website = msg.detail[msg.detail.length-1].website.name;
     if (typeof msg.detail[msg.detail.length-1].logWith === "undefined") {
-        var connectionType = "classic connection";
+        var connectionType = "classic connection (login : "+msg.detail[msg.detail.length-1].user.login+")";
     } else {
         var connectionType = "connection with website "+ msg.detail[msg.detail.length-1].logWith;
     }
     if(success){
-        results[website]="> "+website + " : SUCCESS connection, logout and reconnection for "+connectionType+ " (login : "+msg.detail[msg.detail.length-1].user.login+")";
+        results[website]="> "+website + " : SUCCESS connection, logout and reconnection for "+connectionType;
     } else {
         if(type != "logout")
-            results[website]="> "+website + " : FAIL "+type+" for "+connectionType + " (login : "+msg.detail[msg.detail.length-1].user.login+")";
+            results[website]="> "+website + " : FAIL "+type+" for "+connectionType ;
         else
-            results[website]="> "+website + " : FAIL "+type + " (login : "+msg.detail[msg.detail.length-1].user.login+")";
+            results[website]="> "+website + " : FAIL "+type;
     }
 }

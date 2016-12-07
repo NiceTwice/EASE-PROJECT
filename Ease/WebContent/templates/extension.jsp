@@ -1,10 +1,10 @@
 		<div id="downloadExtension" class="centeredItem" style="display:none;">
 		<div class="popupContent">
 			<p class="title classicContent">Get the Ease extension ! <i class="fa fa-heart" aria-hidden="true"></i></p>
-			<p class="title safariUpdate">You must uninstall and reinstall the extension ! <i class="fa fa-recycle" aria-hidden="true"></i></p>
+			<p class="title safariUpdate">Sorry, you must uninstall and reinstall the extension. <i class="fa fa-recycle" aria-hidden="true"></i></p>
 			<p class="info classicContent">Download the extension to make Ease automagically work on this computer</br>For now, it only works on Chrome and Safari.</p>
-			<p class="info safariUpdate">We are currently facing problems with the last extension version. It is deprecated and can cause several problems on your browser.</br>We <span>strongly recommend</span> you to uninstall the Ease extension and redownload it !</p>
-			<p><i class="fa fa-angle-down" aria-hidden="true"></i></p>
+			<p class="info safariUpdate">We have detected some minor bugs with the last extension version.</br>We recommend you <span>to uninstall the Ease extension</span> and redownload it !</p>
+			<!--  <p><i class="fa fa-angle-down" aria-hidden="true"></i></p>-->
 			<button class="install-button classicContent">Get Ease Extension</button>
 			<button class="install-button safariUpdate">Follow the steps</button>
 			<p id="moreInfoButton" style="margin-top: 5px;">Why is the extension necessary.</p>
@@ -15,8 +15,7 @@
 			<p style="font-size: 16px;">Go to "Safari" -> "Preferences" -> "Extensions" and click on "uninstall" on the Ease extension.</p>
 			<div style="width: 40%;margin:5px auto 5px auto;display:inline-block;"><img style="width: 100%" src="resources/other/preferences-menu.png"/></div>
 			<div style="width: 50%;margin:5px auto 5px auto;display:inline-block;"><img style="width: 100%" src="resources/other/extensions-menu.png"/></div>
-			<p style="font-size: 16px;">Once you uninstalled the extension, just reload this page.</br>Then follow the steps to reinstall it.</p>
-			<button class="safariUninstall">Reload</button>
+			<button class="safariUninstall">Next step</button>
 		</div>
 		<div class="safariHelper" id="installdownloaded" style="display: none;">
 			<h1 style="margin-top: 2px; font-size: 37px;">Install the extension</h1>

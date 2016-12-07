@@ -15,6 +15,7 @@
 	"logout":{
 		"todo":[
 			{"action":"goto", "url":"https://outlook.live.com/owa/logoff.owa"},
+			{"action":"waitfor", "search":"a[href='http://outlook.com/']"},
 			{"action":"goto", "url":"https://outlook.live.com/owa/?nlp=1"}
 		]
 	},

@@ -13,11 +13,10 @@
 	"logout":{
 		"todo":[
 			{"action":"goto", "url":"https://www.7speaking.com/newsite/controlnew/newdelog.cfm"},
-			{"action":"waitload"},
 			{"action":"goto", "url":"https://www.7speaking.com/newsite/controlnew/newlogin.cfm"}
 			]
 	},
 	"checkAlreadyLogged":[
-		{"search":"#dswsdqsdqsdqsdqsd"}
+		{"search":"a[href='/newsite/controlnew/newdelog.cfm']"}
 	]
 }

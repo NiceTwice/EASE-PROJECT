@@ -40,6 +40,12 @@
 		</button>
 	</div>
 	<div>
+		<button id="testWebsites" state="off" class="button adminButton"
+			target="TestWebsitesTab">
+			<img src="resources/icons/robo_test.png" />
+		</button>
+	</div>
+	<div>
 		<button id="enterMoveSitesMode" state="off" class="button adminButton"
 			target="MoveSitesTab">
 			<img src="resources/icons/apps.png" />
@@ -58,12 +64,6 @@
 		</button>
 	</div>
 	<div>
-		<button id="testWebsites" state="off"
-			class="button adminButton">
-			<img src="resources/icons/robo_test.png" />
-		</button>
-	</div>
-	<div>
 		<button id="cleanSavedSessions" state="off"
 			class="button adminButton">
 			<img src="resources/icons/vacuum-cleaner.png" />
@@ -79,3 +79,4 @@
 <%@ include file="MoveSites.jsp" %>
 <%@ include file="TagsManager.jsp"%>
 <%@ include file="ChangeBackground.jsp"%>
+<%@ include file="TestWebsites.jsp"%>

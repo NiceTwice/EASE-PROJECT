@@ -1,17 +1,22 @@
 var results = {};
+var easeTab = null;
 
 extension.runtime.bckgrndOnMessage("getPopupContent", function(msg, senderTab, sendResponse){
     sendResponse(results);
 });
 
 extension.runtime.bckgrndOnMessage("TestConnection", function(msg, senderTab, sendResponse){
-    results[msg.detail[msg.detail.length-1].website.name]="*** Testing website "+msg.detail[msg.detail.length-1].website.name+" ***";
+    easeTab = senderTab;
+    results[msg.detail[msg.detail.length-1].website.name]="> "+msg.detail[msg.detail.length-1].website.name+" : Initialize test";
+    sendResults();
     connectTo(msg, null, function(){
         //TODO
     });
 });
 
 extension.runtime.bckgrndOnMessage("TestMultipleConnections", function(msg, senderTab, sendResponse){
+    easeTab = senderTab;
+    results = {};
     multipleTests(msg, null, 0);
 });
 
@@ -19,7 +24,8 @@ function multipleTests(msg, tab, i){
     var websiteMsg = {};
     if(i<msg.detail.length){
         websiteMsg.detail = msg.detail[i];
-         results[websiteMsg.detail[websiteMsg.detail.length-1].website.name]="*** Testing website "+websiteMsg.detail[websiteMsg.detail.length-1].website.name+" ***";
+         results[websiteMsg.detail[websiteMsg.detail.length-1].website.name]="> "+websiteMsg.detail[websiteMsg.detail.length-1].website.name+" : Initialize test";
+        sendResults();
         connectTo(websiteMsg, tab, function(tab){
             multipleTests(msg, tab, i+1);
         });
@@ -30,6 +36,8 @@ function multipleTests(msg, tab, i){
 }
 
 function connectTo(msg, currentTab, callback){
+    results[msg.detail[msg.detail.length-1].website.name]="> "+msg.detail[msg.detail.length-1].website.name+" : TESTING connection";
+    sendResults();
     msg.todo = "checkAlreadyLogged";
     msg.bigStep = 0;
     msg.actionStep = 0;
@@ -98,12 +106,12 @@ function connectTo(msg, currentTab, callback){
                                                     extension.tabs.onUpdatedRemoveListener(tab);
                                                     extension.tabs.onMessageRemoveListener(tab);
                                                 }
-                                            },20000);
+                                            },15000);
                                         }
                                     }
                                 }
                             } else if (response != undefined){
-                                printConsole(false, "connection", msg);
+                                printConsole(false, "CONNECTION", msg);
                                 callback(tab);
                                 msg.result = "Fail";
                                 //extension.tabs.close(tab, function(){});
@@ -120,6 +128,8 @@ function connectTo(msg, currentTab, callback){
 }
 
 function logoutFrom(msg, oldTab, currentWindow, callback) {
+     results[msg.detail[msg.detail.length-1].website.name]="> "+msg.detail[msg.detail.length-1].website.name+" : TESTING logout";
+    sendResults();
     msg.todo = "logout";
     msg.bigStep = msg.detail.length-1;
     msg.actionStep = 0;
@@ -143,7 +153,7 @@ function logoutFrom(msg, oldTab, currentWindow, callback) {
                                         reconnect(msg, tab, currentWindow, callback);
                                     }
                                 } else if (response != undefined){
-                                    printConsole(false, "logout", msg);
+                                    printConsole(false, "LOGOUT", msg);
                                     callback(tab);
                                     extension.tabs.onMessageRemoveListener(tab);
                                     extension.tabs.onUpdatedRemoveListener(tab);
@@ -157,6 +167,8 @@ function logoutFrom(msg, oldTab, currentWindow, callback) {
 }
 
 function reconnect(msg, tab, currentWindow, callback){
+     results[msg.detail[msg.detail.length-1].website.name]="> "+msg.detail[msg.detail.length-1].website.name+" : TESTING reconnection";
+    sendResults();
     msg.todo = "checkAlreadyLogged";
     msg.bigStep = msg.detail.length - 1;
     msg.actionStep = 0;
@@ -211,18 +223,18 @@ function reconnect(msg, tab, currentWindow, callback){
                                                     extension.tabs.onUpdatedRemoveListener(tab);
                                                     extension.tabs.onMessageRemoveListener(tab);
                                                 }
-                                            }, 20000);
+                                            }, 15000);
                                         }
                                     }
                                 }
                             } else if(response.type == "logout fail") {
-                                        printConsole(false, "logout", msg);
+                                        printConsole(false, "LOGOUT", msg);
                                         callback(tab);
                                         extension.tabs.onMessageRemoveListener(tab);
                                         extension.tabs.onUpdatedRemoveListener(tab);
                                         //extension.tabs.close(tab, function() {});
                             } else if (response != undefined){
-                                        printConsole(false, "reconnection", msg);
+                                        printConsole(false, "RECONNECTION", msg);
                                         callback(tab);
                                         extension.tabs.onMessageRemoveListener(tab);
                                         extension.tabs.onUpdatedRemoveListener(tab);
@@ -255,18 +267,18 @@ function checkConnected(msg, tab, currentWindow, nextAction, callback){
                         }
                     } else if(response.type == "fail") {
                         if(nextAction=="logout"){
-                            printConsole(false, "connection", msg);
+                            printConsole(false, "CONNECTION", msg);
                             callback(tab);
                         }
                         else if(nextAction="end"){
-                            printConsole(false, "reconnection", msg);
+                            printConsole(false, "RECONNECTION", msg);
                             callback(tab);
                         }
                         extension.tabs.onMessageRemoveListener(tab);
                         extension.tabs.onUpdatedRemoveListener(tab);
                         //extension.tabs.close(tab, function() {});
                     } else if (response != undefined){
-                        printConsole(false, "unknown error", msg);
+                        printConsole(false, "UNKOWN ERROR", msg);
                         callback(tab);
                         extension.tabs.onMessageRemoveListener(tab);
                         extension.tabs.onUpdatedRemoveListener(tab);
@@ -293,4 +305,9 @@ function printConsole(success, type, msg){
         else
             results[website]="> "+website + " : FAIL "+type;
     }
+    sendResults();
+}
+
+function sendResults(){
+    extension.tabs.sendMessage(easeTab, "printResults", results, function(){});
 }

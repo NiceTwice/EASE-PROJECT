@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	/* Buttons behavior */
 	$(".admin-menu button").click(openSideViewTab);
-	$(".RightSideViewTab button .fa.fa-times").click(closeSideViewTab);
+	$(".RightSideViewTab button#quit").click(closeSideViewTab);
 
 	/* Add Users behavior */
 	$('#return').click(returnClick);
@@ -21,7 +21,7 @@ $(document).ready(function() {
 	
 	$("#cleanSavedSessions").click(cleanSavedSessions);
 	
-	$("#testWebsites").click(testWebsites);
+	$("#buttonTestWebsites").click(testWebsites);
 	
 	/* Move websites positions in catalog */
 	$(".goTop").click(function() {

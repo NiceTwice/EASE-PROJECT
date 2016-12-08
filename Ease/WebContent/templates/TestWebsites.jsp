@@ -13,17 +13,22 @@
 
 		<div>
 			<button id="buttonTestWebsites">Begin test</button>
-			<p style="display:inline-block;" id="nbOfSuccess"></p>
+			<p style="display:inline-block;" id="nbOfSuccess">Success : 0/0 (0%)</p>
 		</div>
-		<div style="margin-top:15px; margin-bottom:50px;" id="testResults">
+		<div style="margin-top:15px; margin-bottom:75px;" id="testResults">
 		</div>
 	<script>
 		document.addEventListener("PrintTestResult", function(event){
 			var res = event.detail;
 			$("#testResults p").remove();
+			var nbOfTests = 0;
+			var nbOfSuccess = 0;
 			for(var i in res){
+				nbOfTests++;
+				if(res[i].indexOf("SUCCESS")!=-1) nbOfSuccess++;
 		        $("#testResults").append("<p>"+res[i]+"</p>");
 		    }
+			$("#nbOfSuccess").text("Success : "+nbOfSuccess+"/"+nbOfTests+" ("+(100*nbOfSuccess/nbOfTests)+"%)");
 		}, false);
 	</script>
 	</div>

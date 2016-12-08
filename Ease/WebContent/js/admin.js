@@ -345,7 +345,7 @@ function testWebsites(){
 		function(retMsg){
 			var json = {};
 			json.detail = JSON.parse(retMsg);
-    		event = new CustomEvent("MultipleTests", json);
+			event = new CustomEvent("MultipleTests", json);
     		document.dispatchEvent(event);
 		},
 		function(retMsg){

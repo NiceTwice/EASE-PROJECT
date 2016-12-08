@@ -1,5 +1,6 @@
 var results = {};
 
+
 extension.runtime.bckgrndOnMessage("getPopupContent", function(msg, senderTab, sendResponse){
     sendResponse(results);
 });

@@ -14,7 +14,7 @@
 	},
 	"logout":{
 		"todo":[
-			{"action":"goto", "search":"https://www.blablacar.fr/deconnexion"}
+			{"action":"goto", "url":"https://www.blablacar.fr/deconnexion"}
 			]
 	},
 	"checkAlreadyLogged":[

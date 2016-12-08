@@ -4,20 +4,19 @@
     "home":"https://www.alloresto.fr/connexion",
     "connect": {
     	"todo": [
-    		{"action":"fill", "what":"login", "search":"#uname"},
-    		{"action":"fill", "what":"password", "search":"#pass26"},
-    		{"action":"click", "search":"input[type='submit']"}
+    		{"action":"fill", "what":"login", "search":"input[name='login-email']"},
+    		{"action":"fill", "what":"password", "search":"input[name='login-password']"},
+    		{"action":"click", "search":"button[type='submit']"}
        	]
     },
     "logout": {
     	"todo": [
     		{"action":"goto", "url":"https://www.alloresto.fr/authsystem/logout"},
-    		{"action":"waitfor", "search":"#js_lien_connexion"},
     		{"action":"goto", "url":"https://www.alloresto.fr/connexion"}
     	]
     },
     "checkAlreadyLogged": [
-    	{"search":"span#client"}
+    	{"search":"li.user.placeholder"}
     ],
     "Facebook": {
     	"todo": [

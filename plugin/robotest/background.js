@@ -24,7 +24,14 @@ function multipleTests(msg, tab, i){
     var websiteMsg = {};
     if(i<msg.detail.length){
         websiteMsg.detail = msg.detail[i];
-         results[websiteMsg.detail[websiteMsg.detail.length-1].website.name]="> "+websiteMsg.detail[websiteMsg.detail.length-1].website.name+" : Initialize test";
+        var resultRow = websiteMsg.detail[websiteMsg.detail.length-1].website.name;
+        if (typeof websiteMsg.detail[websiteMsg.detail.length-1].logWith === "undefined") {
+            resultRow += " login-"+websiteMsg.detail[websiteMsg.detail.length-1].user.login;
+        } else {
+            resultRow += " logiwth-"+ websiteMsg.detail[websiteMsg.detail.length-1].logWith;
+        }
+        websiteMsg.resultRow = resultRow;
+         results[resultRow]="> "+websiteMsg.detail[websiteMsg.detail.length-1].website.name+" : Initialize test";
         sendResults();
         connectTo(websiteMsg, tab, function(tab){
             multipleTests(msg, tab, i+1);
@@ -36,7 +43,7 @@ function multipleTests(msg, tab, i){
 }
 
 function connectTo(msg, currentTab, callback){
-    results[msg.detail[msg.detail.length-1].website.name]="> "+msg.detail[msg.detail.length-1].website.name+" : TESTING connection";
+    results[msg.resultRow]="> "+msg.detail[msg.detail.length-1].website.name+" : TESTING connection";
     sendResults();
     msg.todo = "checkAlreadyLogged";
     msg.bigStep = 0;
@@ -128,7 +135,7 @@ function connectTo(msg, currentTab, callback){
 }
 
 function logoutFrom(msg, oldTab, currentWindow, callback) {
-     results[msg.detail[msg.detail.length-1].website.name]="> "+msg.detail[msg.detail.length-1].website.name+" : TESTING logout";
+     results[msg.resultRow]="> "+msg.detail[msg.detail.length-1].website.name+" : TESTING logout";
     sendResults();
     msg.todo = "logout";
     msg.bigStep = msg.detail.length-1;
@@ -167,7 +174,7 @@ function logoutFrom(msg, oldTab, currentWindow, callback) {
 }
 
 function reconnect(msg, tab, currentWindow, callback){
-     results[msg.detail[msg.detail.length-1].website.name]="> "+msg.detail[msg.detail.length-1].website.name+" : TESTING reconnection";
+     results[msg.resultRow]="> "+msg.detail[msg.detail.length-1].website.name+" : TESTING reconnection";
     sendResults();
     msg.todo = "checkAlreadyLogged";
     msg.bigStep = msg.detail.length - 1;
@@ -298,12 +305,12 @@ function printConsole(success, type, msg){
         var connectionType = "connection with website "+ msg.detail[msg.detail.length-1].logWith;
     }
     if(success){
-        results[website]="> "+website + " : SUCCESS connection, logout and reconnection for "+connectionType;
+        results[msg.resultRow]="> "+website + " : SUCCESS connection, logout and reconnection for "+connectionType;
     } else {
         if(type != "logout")
-            results[website]="> "+website + " : FAIL "+type+" for "+connectionType ;
+            results[msg.resultRow]="> "+website + " : FAIL "+type+" for "+connectionType ;
         else
-            results[website]="> "+website + " : FAIL "+type;
+            results[msg.resultRow]="> "+website + " : FAIL "+type;
     }
     sendResults();
 }

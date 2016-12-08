@@ -1,0 +1,26 @@
+{
+    "name":"TheNounProject",
+    "lastLogin":"",
+    "home":"https://thenounproject.com/",
+    "connect":{
+        "todo":[
+        	{"action":"goto", "url":"https://thenounproject.com/accounts/login/"},
+            {"action":"fill", "what":"login", "search":"#user_id", "grave":true},
+            {"action":"fill", "what":"password", "search":"#id_password"},
+            {"action":"click", "search":"form button[type='submit']"}
+        ]
+    },
+    "logout":{
+        "todo":[
+        	{"action":"goto","url":"https://thenounproject.com/accounts/logout/"}
+        ]
+    },
+    "checkAlreadyLogged":[
+        {"search":"a[href*='logout']"}
+    ],
+    "Facebook":{
+    	"todo":[
+    		{"action":"goto", "url":"https://thenounproject.com/accounts/facebook/login/"}
+    	]
+    }
+}

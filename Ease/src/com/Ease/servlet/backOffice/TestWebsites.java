@@ -55,7 +55,7 @@ public class TestWebsites extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		User user = (User)(session.getAttribute("User"));
-		ServletItem SI = new ServletItem(ServletItem.Type.AskInfo, request, response, user);
+		ServletItem SI = new ServletItem(ServletItem.Type.TestWebsites, request, response, user);
 		DataBase db = (DataBase)session.getServletContext().getAttribute("DataBase");
 				
 		try {

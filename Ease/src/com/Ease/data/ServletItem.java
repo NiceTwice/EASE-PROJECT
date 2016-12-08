@@ -69,7 +69,8 @@ public class ServletItem {
 		TheFamilyInvitation,
 		TheFamilyRegistration,
 		StockUpdate,
-		SendRequestedWebsiteValidation
+		SendRequestedWebsiteValidation,
+		TestWebsites
 	}
 	public enum Code
 	{
@@ -205,6 +206,8 @@ public class ServletItem {
 		String ret = retMsg;
 		if (type == Type.AskInfo && retCode == 200) {
 			retMsg = "Info sended.";
+		} else if(type == Type.TestWebsites && retCode == 200){
+			retMsg = "Websites tested";
 		} else if (type == Type.SaveSessionServlet && retCode == 200) {
 			retMsg = "Session saved for user_id "+user.getId();
 		}

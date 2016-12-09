@@ -1,0 +1,39 @@
+{
+    "name":"AngelList",
+    "lastLogin":"",
+    "home":"https://angel.co/",
+    "connect":{
+        "todo":[
+        	{"action":"goto", "url":"https://angel.co/login"},
+          	{"action":"fill", "what":"login", "search":"#user_email", "grave":true},
+            {"action":"fill", "what":"password", "search":"#user_password", "grave":true},
+            {"action":"click", "search":"#new_user input[type='submit']"}
+        ]
+    },
+    "Facebook":{
+    	"todo":[
+    		{"action":"goto", "url":"https://angel.co/login"},
+            {"action":"aclick", "search":"a[href*='/auth/facebook']"}
+    	]
+    },
+    "Twitter": {
+    	"todo":[
+    		{"action":"goto", "url":"https://angel.co/login"},
+            {"action":"aclick", "search":"a[href*='/auth/twitter']"}
+    	]
+    },
+    "Linkedin": {
+    	"todo":[
+    		{"action":"goto", "url":"https://angel.co/login"},
+            {"action":"aclick", "search":"a[href*='/linkedin']"}
+    	]
+    },
+    "logout":{
+        "todo":[
+            {"action":"goto", "url":"https://angel.co/logout"}
+         ]
+    },
+    "checkAlreadyLogged":[
+        {"search":"div.userPhoto"}
+    ]
+}

@@ -4,7 +4,7 @@
 	"home":"https://www.couchsurfing.com",
 	"connect":{
         "todo":[
-            {"action":"clickona", "search":"a[href='/users/sign_in?cs_new_fe=true']", "grave":true}
+            {"action":"clickona", "search":"a[href='/users/sign_in?cs_new_fe=true']", "grave":true},
 			{"action":"waitfor", "search":"#user_login"},
 			{"action":"fill", "what":"login", "search":"#user_login", "grave":true},
 			{"action":"fill", "what":"password", "search":"#user_password", "grave":true},

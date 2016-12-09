@@ -17,6 +17,7 @@
     "logout":{
         "todo":[
             {"action":"goto", "url":"https://9gag.com/logout"},
+            {"action":"waitfor", "search":"a[href*='login']"},
             {"action":"goto", "url":"https://9gag.com/login"}
          ]
     },
@@ -26,6 +27,6 @@
         ]
     },
     "checkAlreadyLogged":[
-        {"search":"div.upload"}
+        {"search":"a[href*='/u/']"}
     ]
 }

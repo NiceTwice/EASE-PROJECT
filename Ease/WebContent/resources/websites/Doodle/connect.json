@@ -1,0 +1,32 @@
+{
+    "name":"Doodle",
+    "lastLogin":"",
+    "home":"http://doodle.com/",
+    "connect":{
+        "todo":[
+        	{"action":"clickona", "search":"a.login-menu"},
+        	{"action":"waitfor", "search":"#logisterEmail"},
+          	{"action":"fill", "what":"login", "search":"#logisterEmail", "grave":true},
+            {"action":"fill", "what":"password", "search":"#logisterPassword", "grave":true},
+            {"action":"click", "search":"#logisterSubmit"}
+        ]
+    },
+    "Facebook":{
+    	"todo":[
+            {"action":"click", "search":".third-party-btn.facebook"}
+    	]
+    },
+    "logout":{
+        "todo":[
+            {"action":"clickona", "search":"#logout"}
+         ]
+    },
+    "Google":{
+        "todo":[
+            {"action":"click", "search":".third-party-btn.google"}
+        ]
+    },
+    "checkAlreadyLogged":[
+        {"search":"#logout"}
+    ]
+}

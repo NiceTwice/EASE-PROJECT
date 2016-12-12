@@ -1,0 +1,30 @@
+{
+    "name":"ProductHunt",
+    "lastLogin":"",
+    "home":"https://www.producthunt.com/",
+    "connect": {
+    	"todo": []
+    },
+    "Facebook":{
+    	"todo":[
+    		{"action":"clickona", "search":"a[href='/login']"},
+    		{"action":"waitfor", "search":"a[href*='/auth/facebook']"},
+            {"action":"aclick", "search":"a[href*='/auth/facebook']"}
+    	]
+    },
+    "Twitter": {
+    	"todo":[
+    		{"action":"clickona", "search":"a[href='/login']"},
+    		{"action":"waitfor", "search":"a[href*='/auth/facebook']"},
+            {"action":"aclick", "search":"a[href*='/auth/twitter']"}
+    	]
+    },
+    "logout":{
+        "todo":[
+            {"action":"goto", "url":"https://www.producthunt.com/logout"}
+         ]
+    },
+    "checkAlreadyLogged":[
+        {"search":"a[class*='addPostButton']"}
+    ]
+}

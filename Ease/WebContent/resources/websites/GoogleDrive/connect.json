@@ -5,6 +5,7 @@
 	"home":"https://drive.google.com",
 	"connect":{
 		"todo":[
+			{"action":"aclick", "search":"a[href*='accounts.google.com']"},
             {"action":"waitfor", "search":"div[aria-label='Google']"},
 			{"action":"clickona", "search":"#account-chooser-add-account"},
 			{"action":"waitfor", "search":"#Email"},

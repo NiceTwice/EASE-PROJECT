@@ -1,0 +1,21 @@
+{
+    "name":"Paypal",
+    "lastLogin":"",
+    "home":"https://www.paypal.com/",
+    "connect":{
+        "todo":[
+        	{"action":"aclick", "search":"a[href *='signin']"},
+            {"action":"fill", "what":"login", "search":"#email"},
+            {"action":"fill", "what":"password", "search":"#password"},
+            {"action":"click", "search":"#btnLogin"}
+        ]
+    },
+    "logout":{
+        "todo":[
+        	{"action":"goto", "url":"https://www.paypal.com/myaccount/logout"}
+            ]
+    },
+    "checkAlreadyLogged":[
+        {"search":"a[href*='logout']"}
+    ]
+}

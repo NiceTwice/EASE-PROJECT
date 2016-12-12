@@ -7,7 +7,7 @@
     		{"action":"goto", "url":"https://www.priceminister.com/connect?action=login"},
     		{"action":"fill", "what":"login","search":"#auth_user_identifier", "grave":"true"},
     		{"action":"fill", "what":"password","search":"#userpassword", "grave":"true"},
-    		{"action":"click", "search":"#sbtn_login", "grave":"true"}
+    		{"action":"click", "search":"#itLoginPmContinue", "grave":"true"}
        	]
     },
     "logout": {

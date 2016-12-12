@@ -13,6 +13,7 @@
     "logout": {
     	"todo": [
     		{"action":"goto", "url":"https://www.canva.com/logout"},
+    		{"action":"waitfor", "search":".authPage"},
     		{"action":"goto", "url":"https://www.canva.com/login"}
     	]
     },

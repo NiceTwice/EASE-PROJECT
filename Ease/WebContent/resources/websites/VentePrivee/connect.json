@@ -15,7 +15,7 @@
             ]
     },
     "checkAlreadyLogged":[
-        {"search":"#sponsorbox"}
+        {"search":".basketBtn"}
     ],
     "checkChangeLogin":[
         {"action":"click", "search":"#loginbutton"}

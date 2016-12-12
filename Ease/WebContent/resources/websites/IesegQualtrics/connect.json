@@ -11,8 +11,18 @@
 	},
 	"logout":{
 		"todo":[
-			{"action":"waitfor", "search":"span.icon-user-framed"},
-			{"action":"click", "search":"span.icon-user-framed", "grave":true},
+			{"action":"waitfor", "search":".account-menu-button"},
+			{"action":"click", "search":".account-menu-button", "grave":true},
+			{"action":"wait", "timeout":1500},
+			{"action":"clickona", "search":".account-menu-button", "grave":true},
+			{"action":"wait", "timeout":1500},
+			{"action":"click", "search":".icon-user-framed", "grave":true},
+			{"action":"wait", "timeout":1500},
+			{"action":"click", "search":".icon-angle-down-sm", "grave":true},
+			{"action":"wait", "timeout":1500},
+			{"action":"clickona", "search":".icon-user-framed", "grave":true},
+			{"action":"wait", "timeout":1500},
+			{"action":"clickona", "search":".icon-angle-down-sm", "grave":true},
 			{"action":"waitfor", "time":100, "search":"div.qmenu.dropdown-menu ul.menu-items li.hoverable a"},
 			{"action":"clickona", "search":"div.qmenu.dropdown-menu ul.menu-items li.hoverable a"}
 			]

@@ -9,7 +9,9 @@
 			{"action":"waitfor", "time":100, "search":"form input[type='email']"},
 			{"action":"fill", "what":"login", "search":"form input[type='email']"},
 			{"action":"fill", "what":"password", "search":"form input[type='password']"},
-			{"action":"click", "search":"input[type='submit']"}
+			{"action":"click", "search":"input[type='submit']"},
+			{"action":"waitload"},
+			{"action":"goto","url":"https://www.leboncoin.fr"}
 			]
 	},
 	"logout":{
@@ -19,7 +21,7 @@
 			]
 	},
 	"checkAlreadyLogged":[
-		{"search":".myAccount_nav a:nth-child(6)"}
+		{"search":".myAccount_link"}
 	],
 	"checkChangeLogin":[
 		{"action":"click", "search":"#loginbutton"}

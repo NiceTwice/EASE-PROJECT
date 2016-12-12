@@ -1,0 +1,150 @@
+.overlayEase {
+    position: fixed; 
+    top:0; 
+    left:0; 
+    bottom:0; 
+    right:0; 
+    z-index: 100000;
+    background: rgba(0,0,0,0.12);
+    visibility: visible; 
+    opacity: 1;
+}
+
+.spinnerEase {
+    position: fixed;
+    width: 34px;
+    height: 34px;
+    top: 50%;
+    left: 50%;
+    margin-left: -17px;
+    margin-top: -17px;
+}
+  
+  
+.spinnerEase:after {
+    content: '';
+    position: fixed;
+    border: 2px solid white;
+    width: 30px;
+    height: 30px;
+    animation: spinnerEase 2.5s linear infinite;
+}
+
+.spinnerEase:before{
+    content: '';
+    position: fixed;
+    border: 2px solid white;
+    width: 30px;
+    height: 30px;
+    width: 44px;
+    height: 44px;
+    margin-left: -7px;
+    margin-top: -7px;
+    animation: spinnerEase 2.5s linear infinite;
+    animation-direction: reverse;
+}
+
+@keyframes spinnerEase {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.closeEaseOverlay {
+    color:#E00952;
+    z-index: 10005;
+    font-size: 27px;
+    position: absolute;
+    margin: 0 auto;
+    font-weight: bold;
+    top: 1px;
+    right: 4px;
+}
+.closeEaseOverlay:hover{
+    color: #09E052;
+}
+
+.spinnerElementEase
+{
+    overflow: hidden;
+    
+    position: absolute;
+    
+    border-radius: 50%;
+    
+    margin: 0 auto;
+    
+}
+
+#div-loading-ease-mamene
+{
+    
+    left: calc(50% - 125px);
+    top: calc(50% - 125px);
+    
+    width: 250px;
+    height: 250px;
+    
+    
+}
+
+
+#loading-text-ease-mamene
+{
+    
+    z-index: 995;
+    
+    margin-left: 50px;
+    margin-top: 50px;
+    
+    font-size: 20px;
+    
+    box-sizing: border-box;
+    
+    width: 150px;
+    height: 150px;
+    
+    border: 5px dashed white;
+    
+    color: white;
+    
+    text-align: center;
+    
+    line-height: 140px;
+    
+}
+
+#loading-background-ease-mamene
+{
+    
+    z-index: 993;
+    
+    width: 250px;
+    height: 250px;
+    
+    background-image: url('http://i.imgur.com/eMq5Gds.png');
+    
+    background-repeat: no-repeat;
+    
+    background-position: 12px 91px;
+    
+    background-size: 30px 67px;
+    
+    -webkit-animation: turningspaceship 1.5s ease-in-out infinite; /* Chrome, Safari, Opera */
+    animation: turningspaceship 1.5s ease-in-out infinite;
+    
+}
+
+@-webkit-keyframes turningspaceship {
+    from {transform: rotate(270deg);}
+    to {transform: rotate(630deg);}
+}
+
+
+@keyframes turningspaceship {
+    from {transform: rotate(270deg);}
+    to {transform: rotate(630deg);}
+} 

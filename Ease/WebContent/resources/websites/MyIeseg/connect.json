@@ -12,7 +12,7 @@
     	]
     },
     "checkAlreadyLogged": [
-    	{"search":"a[href='http://myieseg.com/mon-compte/customer-logout/']"}
+    	{"search":"a[href='http://myieseg.com/mon-compte/']"}
     ],
     "logout": {
     	"todo": [

@@ -13,7 +13,7 @@
 
 		<div>
 			<button id="buttonTestWebsites">Begin test</button>
-			<p style="display:inline-block;" id="nbOfSuccess">Success : 0/0 (0%)</p>
+			<p style="display:inline-block; margin-left:10px;" id="nbOfSuccess">Success : 0/0 (0%)</p>
 		</div>
 		<div style="margin-top:15px; margin-bottom:75px;" id="testResults">
 		</div>
@@ -28,7 +28,7 @@
 				if(res[i].indexOf("SUCCESS")!=-1) nbOfSuccess++;
 		        $("#testResults").append("<p>"+res[i]+"</p>");
 		    }
-			$("#nbOfSuccess").text("Success : "+nbOfSuccess+"/"+nbOfTests+" ("+(100*nbOfSuccess/nbOfTests)+"%)");
+			$("#nbOfSuccess").text("Success : "+nbOfSuccess+"/"+nbOfTests+" ("+Math.floor(100*nbOfSuccess/nbOfTests)+"%)");
 		}, false);
 	</script>
 	</div>

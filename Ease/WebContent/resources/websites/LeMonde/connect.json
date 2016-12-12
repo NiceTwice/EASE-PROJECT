@@ -15,7 +15,7 @@
     	]
     },
     "checkAlreadyLogged": [
-    	{"search":"a[href='http://www.lemonde.fr/sfuser/deconnexion']"}
+    	{"search":".acces_compte"}
     ]
     
 }

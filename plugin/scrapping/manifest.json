@@ -1,0 +1,31 @@
+{
+"manifest_version": 2,
+    
+"name" :"Test scrap",
+"version" :"0.0.1",
+"description" :"Test scrapping",
+    
+"icons": {
+    "128": "images/logo_128.png"
+},
+
+"content_scripts": [
+    {
+      "matches": ["https://www.facebook.com/settings?tab=applications"],
+      "js": ["jquery-3.1.0.js", "scrapFacebook.js"]
+    },
+    {
+      "matches": ["https://passwords.google.com/*"],
+      "js": ["jquery-3.1.0.js", "scrapChrome.js"]
+    },
+    {
+      "matches": ["https://www.linkedin.com/psettings/third-party-applications"],
+      "js": ["jquery-3.1.0.js", "scrapLinkedin.js"]
+    }
+  ],
+"background":{
+    "page" : "bckgrnd.html",
+    "persistent": false
+},
+"permissions": ["tabs","\u003Call_urls\u003E","http://*/*", "https://*/*","webNavigation","storage"]
+}

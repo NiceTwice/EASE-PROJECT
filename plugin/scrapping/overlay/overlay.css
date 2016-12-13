@@ -23,12 +23,12 @@
 
 .containerScrap .logoEase{
     width: 320px;
-    margin: 0px 30px 0px 30px; !important
+    margin: 0px 30px 0px 30px !important;
 }
 
 .containerScrap .titleContainer{
     margin : 0px 10px 20px 10px;!important
-    font-family: Arial;
+    font-family: Arial !important;
 }
 
 .containerScrap .titleContainer .title{
@@ -40,7 +40,8 @@
 
 .containerScrap .websiteContainer{
     padding: 3px;
-    margin: 0px 10px 20px 10px;
+    padding: 2px 3px 2px 3px;
+    margin: 0px 10px 20px 10px !important;
     border-style: solid;
     border-width: 2px;
     border-color: #373b60;
@@ -51,27 +52,27 @@
 
 .containerScrap .websiteContainer img{
     display: inline;
-    float: left;
     width : 36px;
-    margin : 0px 0px 1px 2px; !important
+    float:left;
+    margin : 0px 0px 0px 4px !important;
 }
 
-.containerScrap .websiteContainer p{
+.containerScrap .websiteContainer span{
     display: inline;
-    line-height: normal; !important
+    line-height: normal !important; 
     margin-left : 10px;
     font-size: 30px;
-    font-family: Arial;!important
+    font-family: Arial !important;
 }
 
 .containerScrap .infoContainer{
-    margin : 0px 10px 10px 10px; !important
+    margin : 0px 10px 10px 10px !important;
 }
 
 .containerScrap .infoContainer p{
     font-size: 20px;
-    margin : 0px 0px 2px 0px; !important
-    font-family: Arial;!important
+    margin : 0px 0px 2px 0px !important;
+    font-family: Arial !important;
 }
 
 .containerScrap .loader {

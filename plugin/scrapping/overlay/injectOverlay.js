@@ -11,22 +11,26 @@ if (window.top === window) {
             var logoWebsite;
             var titleWebsite;
             var titleWebsite2
+            var websiteColor;
             
             if(msg == "Linkedin"){
                 titleWebsite = "Importing accounts";
                 titleWebsite2 = "you connected with";
                 textWebsite = "Sign in with Linkedin";
                 logoWebsite = "linkedin.png";
+                websiteColor = "3b5998";
             } else if (msg == "Facebook"){
                 titleWebsite = "Importing accounts";
                 titleWebsite2 = "you connected with";
                 textWebsite = "Sign in with Facebook";
                 logoWebsite = "facebook.png";
+                websiteColor = "3b5998";
             } else if (msg == "Chrome"){
                 titleWebsite = "Importing accounts saved in";
                 titleWebsite2 = false;
                 textWebsite = "Google Chrome";
                 logoWebsite = "chrome.png";
+                websiteColor = false;
             }
             
             overlay.className = "overlayScrap";
@@ -55,12 +59,18 @@ if (window.top === window) {
             
             var websiteContainer = document.createElement('div');
             websiteContainer.className = "websiteContainer";
+            if(websiteColor){
+                 websiteContainer.style = "background-color:#"+websiteColor+"; border-color:#"+websiteColor;
+            }
             container.appendChild(websiteContainer);
             var websiteLogo = document.createElement('img');
             websiteLogo.src = chrome.extension.getURL(logoWebsite);
             websiteContainer.appendChild(websiteLogo);
-            var websiteDescription = document.createElement('p');
+            var websiteDescription = document.createElement('span');
             websiteDescription.textContent = textWebsite;
+            if(websiteColor){
+                websiteDescription.style = "color:white;";
+            }
             websiteContainer.appendChild(websiteDescription);
             
             var loader = document.createElement('div');

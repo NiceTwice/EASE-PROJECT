@@ -3,7 +3,7 @@ function testOverlay(){
         extension.tabs.create(window, "http://www.linkedin.com", true, function(tab){
             extension.tabs.onUpdated(tab, function (newTab) {
                 tab = newTab;
-                extension.tabs.sendMessage(tab, "scrapOverlay", "Chrome", function(){});
+                extension.tabs.sendMessage(tab, "scrapOverlay", "Facebook", function(){});
             });
         });
     });

@@ -32,7 +32,7 @@ extension.runtime.onMessage("scrapChrome", function(msg, sendResponse){
     function waitload(callback){
         if($(".z-Of.cba.z-op").length != 0){
             callback();
-        } else if($(".FW").length != 0){
+        } else if($(".gga").length != 0){
             sendResponse([]);
         } else {
             setTimeout(function(){waitload(callback);},100);

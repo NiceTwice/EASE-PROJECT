@@ -37,27 +37,10 @@ extension.runtime.onMessage("scrapFb", function(msg, sendResponse){
         $(".fsl").click();
         var nbOfApps = $("._4n9u.ellipsis").length;
         $("._4n9u.ellipsis").each(function(index){
-            if($(this).text().substr(0,3)=="Que" || $(this).text().substr(0,3)=="que"){
-                
-            }
             results.push($(this).text());
             if(index+1 == nbOfApps){
                 sendResponse(results);
             }
         });
-        
-        function clean(index, apps){
-            var app = $(apps[index]);
-            if(app.text().substr(0,3)=="Que" || app.text().substr(0,3)=="que"){
-                app.find("._25kn").click();
-                function waitElem(elem){
-                    if($(elem).length == 0){
-                        setTimeout(function(){waitElem(elem);},100);
-                    } else {
-                        
-                    }
-                }
-            }
-        }
     });
 });

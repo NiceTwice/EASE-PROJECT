@@ -30,7 +30,7 @@ extension.runtime.onMessage("connectToChrome", function(msg, sendResponse){
 
 extension.runtime.onMessage("scrapChrome", function(msg, sendResponse){
     function waitload(callback){
-        if($(".fba").length != 0){
+        if($(".z-Of.cba.z-op").length != 0){
             callback();
         } else if($(".FW").length != 0){
             sendResponse([]);

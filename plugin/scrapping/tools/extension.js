@@ -216,8 +216,7 @@ var extension = {
                     });
                 }
             }
-            injectonefile(0);
-               
+            injectonefile(0);   
         }
     }
 }

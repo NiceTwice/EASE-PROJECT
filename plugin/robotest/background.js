@@ -50,7 +50,7 @@ function multipleTests(msg, tab, i){
          results[resultRow]="> "+websiteMsg.detail[websiteMsg.detail.length-1].website.name+" : Initialize test";
         sendResults();
         connectTo(websiteMsg, tab, function(tab, status){
-            if(websiteMsg[status]!="success"){
+            if(status!="end" && websiteMsg[status]!="success"){
                 singleTest(websiteMsg);
             } 
             multipleTests(msg, tab, i+1);

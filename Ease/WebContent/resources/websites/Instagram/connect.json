@@ -1,14 +1,14 @@
 {
     "name":"Instagram",
     "lastLogin":"",
-    "home":"https://www.instagram.com/accounts/login",
+    "home":"https://www.instagram.com",
     "connect":{
         "todo":[
             {"action":"waitfor", "search":["a._niffh","a._fcn8k"]},
+            {"action":"clickona", "search":"a._fcn8k"},
     		{"action":"clickona", "search":"a._fcn8k"},
     		{"action":"clickona", "search":"a._fcn8k"},
     		{"action":"clickona", "search":"a._niffh"},
-          	{"action":"clickona", "search":"a._fcn8k"},
             {"action":"fill", "what":"login", "search":"input[name='username']", "grave":true},
             {"action":"fill", "what":"password", "search":"input[name='password']", "grave":true},
             {"action":"click", "search":"form button"}
@@ -20,8 +20,8 @@
     		{"action":"clickona", "search":"a._fcn8k"},
     		{"action":"clickona", "search":"a._fcn8k"},
     		{"action":"clickona", "search":"a._niffh"},
-          	{"action":"clickona", "search":"a._fcn8k"},
-            {"action":"click", "search":".coreSpriteFacebookIconInverted._a0z3x"}
+    		{"action":"clickona", "search":"a._fcn8k"},
+            {"action":"click", "search":"._aj7mu._taytv._ki5uo._o0442"}
     	]
     },
     "logout":{

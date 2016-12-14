@@ -1,0 +1,28 @@
+{
+    "name": "Marmiton",
+    "lastlogin":"",
+    "home":"http://www.marmiton.org/",
+    "connect": {
+    	"todo": [
+            {"action":"goto", "url":"https://www.marmiton.org/espace-perso/login.aspx"},
+    		{"action":"fill", "what":"login","search":".j_validation_container input[type='text']", "grave":"true"},
+    		{"action":"fill", "what":"password","search":".j_validation_container input[type='password']", "grave":"true"},
+    		{"action":"click", "search":".j_validation_container input[type='submit']", "grave":"true"}
+    	]
+    },
+    "Facebook": {
+    	"todo": [
+            {"action":"goto", "url":"https://www.marmiton.org/espace-perso/login.aspx"},
+            {"action":"clickona", "search":".m_btn_connexion_reseaux.m_btn_reseaux_facebook"}
+    	]
+    },
+    "logout": {
+    	"todo": [
+    		{"action":"clickona", "search":".m_deconnexion"}
+    	]
+    },
+    "checkAlreadyLogged": [
+    	{"search":".m_deconnexion"}
+    ]
+    
+}

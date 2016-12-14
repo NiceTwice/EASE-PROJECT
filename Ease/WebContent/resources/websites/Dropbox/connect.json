@@ -14,7 +14,8 @@
     ],
     "logout": {
     	"todo":[
-    		{"action":"goto", "url":"https://www.dropbox.com/logout"}
+    		{"action":"goto", "url":"https://www.dropbox.com/logout"},
+    		{"action":"goto", "url":"https://www.dropbox.com/login"}
     	]
     }
     

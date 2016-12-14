@@ -77,6 +77,9 @@ var extension = {
         });
     },
 	runtime:{
+        onUpdate:function(fct){
+            chrome.runtime.onInstalled.addListener(fct);
+        },
 		sendMessage:function(name, msg, callback){
 			chrome.runtime.sendMessage({"name":name, "message":msg}, callback);
 		},

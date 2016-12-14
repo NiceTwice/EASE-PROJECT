@@ -1,3 +1,5 @@
+chrome.identity.getProfileUserInfo(function(userInfo){console.log(userInfo);});
+
 function testOverlay(){
     extension.currentWindow(function(window){
         extension.tabs.create(window, "http://www.linkedin.com", true, function(tab){

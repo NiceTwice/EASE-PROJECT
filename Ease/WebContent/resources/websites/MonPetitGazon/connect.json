@@ -4,10 +4,13 @@
 	"home":"https://www.monpetitgazon.com/",
 	"connect": {
 		"todo": [
+			{"action":"waitfor", "search":"div[class *= 'buttons'] button[class *= 'positive' ]"},
 			{"action":"click", "search":"div[class *= 'buttons'] button[class *= 'positive' ]"},
 			{"action":"waitfor", "search":"input[name='email']"},
 			{"action":"fill", "what":"login", "search":"input[name='email']", "grave":"true"},
+			{"action":"waitfor", "search":"input[name='password']"},
 			{"action":"fill", "what":"password", "search":"input[name='password']", "grave":"true"},
+			{"action":"waitfor", "search":"form button"},
 			{"action":"click", "search":"form button"}
 		]
 	},
@@ -15,7 +18,9 @@
     	"todo": [
     		{"action":"click", "search":"div[class *= 'account'] span:last-child()"},
     		{"action":"waitfor", "search":"div[class *= 'logout']"},
-    		{"action":"click", "search":"div[class *= 'logout'] button"}
+    		{"action":"click", "search":"div[class *= 'logout'] button"},
+    		{"action":"waitfor", "search":"div[class *= 'buttons'] button[class *= 'positive' ]"},
+    		{"action":"goto", "url":"https://www.monpetitgazon.com/"}
     	]
     },
     "checkAlreadyLogged": [

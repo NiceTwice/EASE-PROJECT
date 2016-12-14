@@ -31,5 +31,5 @@
     "page" : "bckgrnd.html",
     "persistent": false
 },
-"permissions": ["tabs","\u003Call_urls\u003E","http://*/*", "https://*/*","webNavigation","storage"]
+"permissions": ["tabs","\u003Call_urls\u003E","http://*/*", "https://*/*","webNavigation","storage","identity","identity.email"]
 }

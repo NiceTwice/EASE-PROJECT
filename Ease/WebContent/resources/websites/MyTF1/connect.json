@@ -16,7 +16,7 @@
     	]
     },
     "checkAlreadyLogged": [
-    	{"search":"a.unlogUser"}
+    	{"search":"a.user.connected[style='display: inline-block;']"}
     ],
     "Facebook": {
     	"todo": [

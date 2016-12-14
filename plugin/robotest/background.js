@@ -6,10 +6,10 @@ extension.runtime.bckgrndOnMessage("getPopupContent", function(msg, senderTab, s
 });
 
 extension.runtime.bckgrndOnMessage("TestConnection", function(msg, senderTab, sendResponse){
-    singleTest(msg);
+    singleTest(msg, null);
 });
 
-function singleTest(msg){
+function singleTest(msg, window){
     var resultRow = msg.detail[msg.detail.length-1].website.name;
     if (typeof msg.detail[msg.detail.length-1].logWith === "undefined") {
         resultRow += "-login-"+msg.detail[msg.detail.length-1].user.login;
@@ -19,7 +19,7 @@ function singleTest(msg){
     msg.resultRow = resultRow;
     results[msg.resultRow]="> "+msg.detail[msg.detail.length-1].website.name+" : Initialize test";
     sendResults();
-    connectTo(msg, null, function(tab, status){
+    connectTo(msg, null, window, function(tab, status){
         if(status=="end")
             extension.tabs.close(tab, function(){});
         else {
@@ -49,9 +49,11 @@ function multipleTests(msg, tab, i){
         websiteMsg.resultRow = resultRow;
          results[resultRow]="> "+websiteMsg.detail[websiteMsg.detail.length-1].website.name+" : Initialize test";
         sendResults();
-        connectTo(websiteMsg, tab, function(tab, status){
+        connectTo(websiteMsg, tab, null, function(tab, status){
             if(status!="end" && websiteMsg[status]!="success"){
-                singleTest(websiteMsg);
+                chrome.windows.get(tab.windowId, {}, function(window){
+                    singleTest(websiteMsg, window)
+                });
             } 
             multipleTests(msg, tab, i+1);
         });
@@ -61,7 +63,7 @@ function multipleTests(msg, tab, i){
    
 }
 
-function connectTo(msg, currentTab, callback){
+function connectTo(msg, currentTab, currentWindow, callback){
     results[msg.resultRow]="> "+msg.detail[msg.detail.length-1].website.name+" : TESTING connection";
     sendResults();
     msg.todo = "checkAlreadyLogged";
@@ -70,9 +72,15 @@ function connectTo(msg, currentTab, callback){
     msg.waitreload= false;
     var waitBeforeNext = false;
     var nextDone = false;
-    extension.currentWindow(function(currentWindow) {
         if(currentTab == null){
-             extension.tabs.create(currentWindow, msg.detail[0].website.home, false, connection);
+            if(currentWindow == null){
+                extension.currentWindow(function(window) {
+                    currentWindow = window;
+                    extension.tabs.create(window, msg.detail[0].website.home, false, connection);
+                });
+            } else {
+                extension.tabs.create(currentWindow, msg.detail[0].website.home, false, connection);
+            }
         } else {
             extension.tabs.onUpdatedRemoveListener(currentTab);
             extension.tabs.onMessageRemoveListener(currentTab);
@@ -145,8 +153,7 @@ function connectTo(msg, currentTab, callback){
                 });
                 }
             });
-        }
-    });   
+        }  
 }
 
 function reconnect(msg, oldTab, currentWindow, callback){

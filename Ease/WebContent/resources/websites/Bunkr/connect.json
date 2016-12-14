@@ -26,6 +26,6 @@
 			]
 	},
 	"checkAlreadyLogged":[
-		{"search":"ul.dsg-navbar-right.nav navbar-nav.navbar-right"}
+		{"search":"ul.dsg-navbar-right.nav.navbar-nav.navbar-right"}
 	]
 }

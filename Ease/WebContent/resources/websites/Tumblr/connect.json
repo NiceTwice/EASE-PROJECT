@@ -14,7 +14,7 @@
 	"logout":{
 		"todo":[
 		{"action":"goto", "url":"https://www.tumblr.com/logout"},
-		{"action":"waitload"}
+		{"action":"goto", "url":"https://www.tumblr.com/login"}
 			]
 	},
 	"checkAlreadyLogged":[

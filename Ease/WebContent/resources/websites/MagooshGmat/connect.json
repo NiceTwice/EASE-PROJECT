@@ -15,6 +15,6 @@
 			]
 	},
 	"checkAlreadyLogged":[
-		{"search":"a[href='http://gmat.magoosh.com/logout']"}
+		{"search":"a[href='https://gmat.magoosh.com/profile']"}
 	]
 }

@@ -1,5 +1,6 @@
-extension.reloadEaseTabs();
-console.log("le reload frère");
+extension.runtime.onUpdate(function(){
+    extension.reloadEaseTabs();
+});
 
 function getNewLogin(msg, i){
 	if (msg.detail[i].user){

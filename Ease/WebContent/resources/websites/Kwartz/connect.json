@@ -1,0 +1,24 @@
+{
+    "name":"Kwartz",
+    "lastlogin":"",
+    "home":"http://accueil.etud-espas.fr/owncloud/",
+    "connect": {
+    	"todo": [
+    		{"action":"goto", "url":"http://accueil.etud-espas.fr/owncloud/"},
+    		{"action":"fill", "what":"login","search":"input#user", "grave":"true"},
+    		{"action":"fill", "what":"password","search":"input#password", "grave":"true"},
+    		{"action":"click", "search":"input#submit", "grave":"true"}
+    	]
+    },
+    "logout": {
+    	"todo": [
+    		{"action":"click", "search":"#expandDisplayName"},
+    		{"action":"waitfor", "search":"a#logout"},
+    		{"action":"clickona", "search":"a#logout"}
+    	]
+    },
+    "checkAlreadyLogged": [
+    	{"search":"#expandDisplayName"}
+    ]
+    
+}

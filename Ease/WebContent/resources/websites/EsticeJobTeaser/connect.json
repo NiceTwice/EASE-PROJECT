@@ -1,0 +1,22 @@
+{
+    "name":"Estice Job Teaser",
+    "lastLogin":"",
+    "home":"https://estice-espas.jobteaser.com/",
+    "connect":{
+        "url":"https://estice-espas.jobteaser.com/",
+        "todo":[
+    		{"action":"fill", "what":"login", "search":"input#user_email"},
+    		{"action":"fill", "what":"password", "search":"input#user_password"},
+    		{"action":"click", "search":"input#user_submit"}
+            ]
+    },
+    "logout":{
+        "url":"https://estice-espas.jobteaser.com/",
+        "todo":[
+            {"action":"clickona", "search":"a[href='/fr/users/sign_out']"}
+         ]
+    },
+    "checkAlreadyLogged":[
+        {"search":"a[href='/fr/users/sign_out']"}
+    ]
+}

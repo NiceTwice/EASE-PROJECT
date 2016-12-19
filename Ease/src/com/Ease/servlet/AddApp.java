@@ -113,10 +113,10 @@ public class AddApp extends HttpServlet {
 							user.updateInDB(session.getServletContext());
 						}
 						if (Regex.isEmail(inputs.get("login"))) {
-							db.set("CALL AddEmail(" + user.getId() + ", '" + inputs.get("login") + "');");
+							//db.set("CALL AddEmail(" + user.getId() + ", '" + inputs.get("login") + "');");
 							user.addEmailIfNotPresent(inputs.get("login"));
 						}
-						db.set("CALL increaseRatio(" + siteId + ");");
+						//db.set("CALL increaseRatio(" + siteId + ");");
 						SiteManager siteManager = (SiteManager)session.getAttribute("siteManager");
 						siteManager.increaseSiteRatio(siteId);
 						SI.setResponse(200, Integer.toString(app.getAppId()));

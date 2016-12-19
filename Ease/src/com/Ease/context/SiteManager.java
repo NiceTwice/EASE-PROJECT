@@ -43,7 +43,7 @@ public class SiteManager {
 
 	public void refresh(DataBase db) throws SQLException {
 		this.clearSites();
-		db.set("CALL updateWebsitesPositions();");
+		//db.set("CALL updateWebsitesPositions();");
 		ResultSet lastSitesRs = db.get("SELECT * FROM websites WHERE insertDate >= CURDATE() - INTERVAL 3 DAY ORDER BY position ASC;");
 		while (lastSitesRs.next())
 			this.add(new Site(lastSitesRs, db, true));

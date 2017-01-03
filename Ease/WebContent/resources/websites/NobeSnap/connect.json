@@ -1,0 +1,24 @@
+{
+	"name":"NobeSnap",
+	"lastLogin":"",
+	"home":"https://www.nobesnap.com/mon-compte",
+	"folder":"NobeSnap",
+	"connect":{
+		"todo":[
+			{"action":"fill", "what":"login", "search":"form.login input[name='username']", "grave":true},
+			{"action":"fill", "what":"password", "search":"form.login input[name='password']", "grave":true},
+			{"action":"click", "search":"form.login input[type='submit']", "grave":true}
+			]
+	},
+	"logout":{
+		"todo":[
+			{"action":"goto", "url":"https://www.nobesnap.com/mon-compte/customer-logout/"}
+			]
+	},
+	"checkAlreadyLogged":[
+		{"search":"nav.woocommerce-MyAccount-navigation"}
+	],
+	"checkChangeLogin":[
+		{"action":"click", "search":"#loginbutton"}
+	]
+}

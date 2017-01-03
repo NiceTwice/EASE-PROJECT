@@ -1,0 +1,35 @@
+{
+	"name":"TripAdvisor",
+	"lastLogin":"",
+	"home":"https://www.tripadvisor.com/",
+	"folder":"TripAdvisor",
+	"connect":{
+		"todo":[
+			{"action":"click", "search":"li.login", "grave":true},
+			{"action":"waitfor", "search":"#regBody"},			
+			{"action":"fill", "what":"login", "search":"#regBody #regSignIn.email", "grave":true},
+			{"action":"fill", "what":"password", "search":"#regBody #regSignIn.password", "grave":true},
+			{"action":"click", "search":"#regBody .regSubmitBtn", "grave":true}
+		]
+	},
+	"logout":{
+		"todo":[
+			{"action":"click", "search":"ul.options li:nth-child(3)", "grave":true},
+			{"action":"waitfor", "search":"#SIGNOUT_LINK"},
+			{"action":"click", "search":"#SIGNOUT_LINK", "grave":true}
+		]
+	},
+	"checkAlreadyLogged":[
+		{"search":".greeting"}
+	],
+	"Facebook":{
+		"todo":[
+			{"action":"click", "search":"li.login", "grave":true},
+			{"action":"waitfor", "search":"#regBody"},			
+			{"action":"click", "search":"#facebookBtn"}
+		]	
+	},
+	"checkChangeLogin":[
+		{"action":"click", "search":"#loginbutton"}
+	]
+}

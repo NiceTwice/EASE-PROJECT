@@ -1,0 +1,27 @@
+{
+	"name":"MolotovTV",
+	"lastLogin":"",
+	"home":"https://www.molotov.tv/",
+	"folder":"MolotovTV",
+	"connect":{
+		"todo":[
+			{"action":"goto", "url":"https://www.molotov.tv/account/profile"},
+			{"action":"fill", "what":"login", "search":".index__root___JtfFa input[type='text']", "grave":true},
+			{"action":"fill", "what":"password", "search":".index__root___JtfFa input[type='password']", "grave":true},
+			{"action":"click", "search":".index__root___JtfFa button", "grave":true}
+			]
+	},
+	"logout":{
+		"todo":[
+			{"action":"click", "search":"#header_username", "grave":true},
+			{"action":"waitfor", "search":"li.logout"},
+			{"action":"clickona", "search":"li.logout a", "grave":true}
+			]
+	},
+	"checkAlreadyLogged":[
+		{"search":"#header_username"}
+	],
+	"checkChangeLogin":[
+		{"action":"click", "search":"#loginbutton"}
+	]
+}

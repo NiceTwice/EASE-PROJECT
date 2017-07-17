@@ -47,7 +47,7 @@ public class ServletDeleteTeamUser extends HttpServlet {
                     forEmail.put(app);
                 }
             }
-            if (forEmail.length() != 0 && teamUser_to_delete.getAdmin_email() != null) {
+            if (forEmail.length() != 0 && teamUser_to_delete.getAdmin_id() != null && teamUser_to_delete.getAdmin_id() > 0) {
                 MailJetBuilder mailJetBuilder = new MailJetBuilder();
                 mailJetBuilder.setFrom("contact@ease.space", "Ease.space");
                 mailJetBuilder.setTemplateId(180165);
@@ -59,8 +59,8 @@ public class ServletDeleteTeamUser extends HttpServlet {
                 mailJetBuilder.sendEmail();
             }
             for (TeamUser teamUser : team.getTeamUsers()) {
-                if (teamUser.getAdmin_email().equals(teamUser_to_delete.getEmail())) {
-                    teamUser.setAdmin_email(teamUser_connected.getEmail());
+                if (teamUser.getAdmin_id().equals(teamUser_to_delete.getAdmin_id())) {
+                    teamUser.setAdmin_id(teamUser_connected.getDb_id());
                     sm.saveOrUpdate(teamUser);
                 }
             }

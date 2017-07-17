@@ -84,7 +84,7 @@ public class Registration extends HttpServlet {
             else if (confirmPassword == null || password.equals(confirmPassword) == false)
                 throw new GeneralException(ServletManager.Code.ClientWarning, "Passwords are not the same.");
             else {
-                User newUser = User.createUser(email, fname, confirmPassword, new Date().getTime(), false, sm.getServletContext(), sm.getDB());
+                User newUser = User.createUser(email, fname, confirmPassword, new Date().getTime(), sm.getServletContext(), sm.getDB());
                 session.setAttribute("user", newUser);
                 ((Map<String, User>) sm.getContextAttr("users")).put(email, newUser);
                 ((Map<String, User>) sm.getContextAttr("sessionIdUserMap")).put(sm.getSession().getId(), newUser);
